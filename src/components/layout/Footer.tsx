@@ -43,7 +43,7 @@ const Footer = () => {
             </div>
             
             <p className="text-gray-400 leading-relaxed">
-              Building excellence in commercial construction since 1999. 
+              Building excellence in commercial construction since 1978. 
               We create spaces where businesses thrive and communities flourish.
             </p>
 
@@ -95,9 +95,9 @@ const Footer = () => {
               {[
                 'Commercial Buildings',
                 'Industrial Construction',
-                'Infrastructure Projects',
-                'Project Management',
-                'Design & Build'
+                
+               
+                
               ].map((service) => (
                 <li key={service}>
                   <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
@@ -122,7 +122,8 @@ const Footer = () => {
                 <MapPin size={18} className="text-gray-400 mt-1" />
                 <div>
                   <p className="text-gray-400">
-                    123 Business District,<br />
+                    Plot No.28/22,D-2,<br />
+                    Near KSB Pumps,Telco Road,<br />
                     Pimpri Chinchwad, Pune,<br />
                     Maharashtra 411018
                   </p>
@@ -131,12 +132,12 @@ const Footer = () => {
               
               <div className="flex items-center space-x-3">
                 <Phone size={18} className="text-gray-400" />
-                <p className="text-gray-400">+91 9999999999</p>
+                <p className="text-gray-400">+91 9225655607 / 9225655601</p>
               </div>
               
               <div className="flex items-center space-x-3">
                 <Mail size={18} className="text-gray-400" />
-                <p className="text-gray-400">info@pesgroup.com</p>
+                <p className="text-gray-400">peshgroup@gmail.com</p>
               </div>
             </div>
           </motion.div>
@@ -151,7 +152,7 @@ const Footer = () => {
           className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center"
         >
           <p className="text-gray-400 text-sm">
-            © 2024 PESGROUP Construction Co. All rights reserved.
+            © 2024 PESHGROUP Construction Co. All rights reserved.
           </p>
           
           <div className="flex items-center space-x-6 mt-4 md:mt-0">

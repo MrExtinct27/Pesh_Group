@@ -2,15 +2,18 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { ArrowRight, Calendar, MapPin, Building, X } from 'lucide-react';
+import { ArrowRight, Calendar, MapPin, Building, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const PortfolioSection = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
 
   const openProject = (project: any) => {
     setSelectedProject(project);
+    setCurrentSlide(0); // Reset to first slide
     setIsModalOpen(true);
     document.body.style.overflow = 'hidden';
   };
@@ -18,13 +21,40 @@ const PortfolioSection = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedProject(null);
+    setCurrentSlide(0);
     document.body.style.overflow = 'unset';
+  };
+
+  const nextSlide = () => {
+    if (selectedProject && selectedProject.images) {
+      setCurrentSlide((prev) => 
+        prev === selectedProject.images.length - 1 ? 0 : prev + 1
+      );
+    }
+  };
+
+  const prevSlide = () => {
+    if (selectedProject && selectedProject.images) {
+      setCurrentSlide((prev) => 
+        prev === 0 ? selectedProject.images.length - 1 : prev - 1
+      );
+    }
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
   };
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isModalOpen) {
+      if (!isModalOpen) return;
+      
+      if (e.key === 'Escape') {
         closeModal();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      } else if (e.key === 'ArrowRight') {
+        nextSlide();
       }
     };
 
@@ -35,7 +65,20 @@ const PortfolioSection = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, [isModalOpen]);
+  }, [isModalOpen, selectedProject]);
+
+  // Auto-play slideshow
+  useEffect(() => {
+    if (!isModalOpen || !selectedProject || !selectedProject.images || selectedProject.images.length <= 1) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 2000); // Changed to 2 seconds for faster, more engaging transitions
+
+    return () => clearInterval(interval);
+  }, [isModalOpen, selectedProject, currentSlide]);
 
   const categories = [
     { id: 'all', name: 'All Projects' },
@@ -49,6 +92,13 @@ const PortfolioSection = () => {
       title: 'Corporate Headquarters',
       category: 'commercial',
       image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      ],
       location: 'Mumbai, India',
       date: '2024',
       area: '2.5M sq ft',
@@ -62,6 +112,12 @@ const PortfolioSection = () => {
       title: 'Manufacturing Complex',
       category: 'industrial',
       image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      ],
       location: 'Pune, India',
       date: '2024',
       area: '1.8M sq ft',
@@ -75,6 +131,12 @@ const PortfolioSection = () => {
       title: 'Business Park',
       category: 'commercial',
       image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1577495508048-b635879837f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      ],
       location: 'Bangalore, India',
       date: '2023',
       area: '3.2M sq ft',
@@ -88,6 +150,12 @@ const PortfolioSection = () => {
       title: 'Industrial Hub',
       category: 'industrial',
       image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1590479773265-7464e5d48118?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      ],
       location: 'Chennai, India',
       date: '2023',
       area: '2.1M sq ft',
@@ -101,6 +169,12 @@ const PortfolioSection = () => {
       title: 'Tech Campus',
       category: 'commercial',
       image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1577495508048-b635879837f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      ],
       location: 'Hyderabad, India',
       date: '2022',
       area: '1.9M sq ft',
@@ -114,6 +188,12 @@ const PortfolioSection = () => {
       title: 'Logistics Center',
       category: 'industrial',
       image: 'https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1590479773265-7464e5d48118?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      ],
       location: 'Delhi, India',
       date: '2022',
       area: '2.8M sq ft',
@@ -276,21 +356,172 @@ const PortfolioSection = () => {
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Modal Header */}
+              {/* Modal Header - Slideshow */}
               <div className="relative">
-                <img 
-                  src={selectedProject.image} 
-                  alt={selectedProject.title}
-                  className="w-full h-64 object-cover"
-                />
-                <button 
-                  onClick={closeModal}
-                  className="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors"
-                >
-                  <X size={20} />
-                </button>
-                <div className="absolute bottom-4 left-4 bg-white/90 px-4 py-2 text-sm font-medium">
-                  {selectedProject.category}
+                {/* Main Image */}
+                <div className="relative h-96 overflow-hidden">
+                  {/* Background Image for Parallax Effect */}
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-110"
+                    style={{
+                      backgroundImage: `url(${selectedProject.images[currentSlide]})`,
+                      filter: 'blur(8px) brightness(0.7)',
+                      transform: `scale(1.1) translateY(${currentSlide * 2}px)`
+                    }}
+                  />
+                  
+                  {/* Main Image with Zoom Effect */}
+                  <motion.img 
+                    key={currentSlide}
+                    src={selectedProject.images[currentSlide]} 
+                    alt={`${selectedProject.title} - Image ${currentSlide + 1}`}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    initial={{ 
+                      scale: 1.1,
+                      opacity: 0,
+                      filter: 'brightness(0.8)'
+                    }}
+                    animate={{ 
+                      scale: 1,
+                      opacity: 1,
+                      filter: 'brightness(1)'
+                    }}
+                    transition={{ 
+                      duration: 1.2,
+                      ease: [0.25, 0.46, 0.45, 0.94]
+                    }}
+                    exit={{ 
+                      scale: 0.9,
+                      opacity: 0
+                    }}
+                  />
+                  
+                  {/* Overlay Gradient for Better Text Visibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                  
+                  {/* Enhanced Image Counter with Animation */}
+                  <motion.div 
+                    key={currentSlide}
+                    className="absolute top-4 left-4 bg-black/80 text-white px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm"
+                    initial={{ 
+                      scale: 0.8,
+                      opacity: 0,
+                      y: -10
+                    }}
+                    animate={{ 
+                      scale: 1,
+                      opacity: 1,
+                      y: 0
+                    }}
+                    transition={{ 
+                      duration: 0.6,
+                      ease: "easeOut"
+                    }}
+                  >
+                    <motion.span
+                      key={currentSlide}
+                      initial={{ opacity: 0, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.2 }}
+                    >
+                      {currentSlide + 1} / {selectedProject.images.length}
+                    </motion.span>
+                  </motion.div>
+                  
+                  {/* Enhanced Close Button with Animation */}
+                  <motion.button 
+                    onClick={closeModal}
+                    className="absolute top-4 right-4 w-12 h-12 bg-white/95 rounded-full flex items-center justify-center hover:bg-white transition-all duration-300 z-10 shadow-lg backdrop-blur-sm"
+                    whileHover={{ 
+                      scale: 1.1,
+                      rotate: 90,
+                      boxShadow: "0 20px 40px rgba(0,0,0,0.2)"
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                    initial={{ scale: 0, rotate: -90 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ 
+                      duration: 0.6,
+                      ease: "easeOut"
+                    }}
+                  >
+                    <X size={22} />
+                  </motion.button>
+                  
+                  {/* Enhanced Category Badge with Animation */}
+                  <motion.div 
+                    key={currentSlide}
+                    className="absolute bottom-4 left-4 bg-white/95 px-4 py-2 text-sm font-medium rounded-lg shadow-lg backdrop-blur-sm"
+                    initial={{ 
+                      scale: 0.8,
+                      opacity: 0,
+                      x: -20
+                    }}
+                    animate={{ 
+                      scale: 1,
+                      opacity: 1,
+                      x: 0
+                    }}
+                    transition={{ 
+                      duration: 0.6,
+                      delay: 0.3,
+                      ease: "easeOut"
+                    }}
+                  >
+                    <motion.span
+                      key={currentSlide}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.4, delay: 0.5 }}
+                    >
+                      {selectedProject.category}
+                    </motion.span>
+                  </motion.div>
+                  
+                  {/* Enhanced Dots Indicator with Animation */}
+                  {selectedProject.images.length > 1 && (
+                    <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3">
+                      {selectedProject.images.map((image: string, index: number) => (
+                        <motion.button
+                          key={index}
+                          onClick={() => goToSlide(index)}
+                          className={`relative w-3 h-3 rounded-full transition-all duration-500 ${
+                            currentSlide === index 
+                              ? 'bg-white' 
+                              : 'bg-white/30 hover:bg-white/50'
+                          }`}
+                          whileHover={{ scale: 1.3 }}
+                          whileTap={{ scale: 0.9 }}
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ 
+                            scale: currentSlide === index ? 1 : 0.8,
+                            opacity: 1
+                          }}
+                          transition={{ 
+                            duration: 0.5,
+                            delay: index * 0.1,
+                            ease: "easeOut"
+                          }}
+                        >
+                          {/* Active dot pulse effect */}
+                          {currentSlide === index && (
+                            <motion.div
+                              className="absolute inset-0 bg-white rounded-full"
+                              animate={{
+                                scale: [1, 1.5, 1],
+                                opacity: [0.7, 0, 0.7]
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                              }}
+                            />
+                          )}
+                        </motion.button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
 

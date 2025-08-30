@@ -37,7 +37,7 @@ const ServicesSection = () => {
       title: 'Commercial Buildings',
       description: 'Premium office complexes and corporate headquarters designed for the modern business landscape.',
       features: ['Office Buildings', 'Corporate Campuses', 'High-Rise Developments', 'Sustainable Design'],
-      price: 'Starting from ₹2,200/sq ft',
+      price: '',
       popular: true
     },
     {
@@ -45,7 +45,7 @@ const ServicesSection = () => {
       title: 'Industrial Construction',
       description: 'State-of-the-art manufacturing facilities and industrial complexes built to international standards.',
       features: ['Manufacturing Plants', 'Warehouses', 'Industrial Parks', 'Logistics Centers'],
-      price: 'Starting from ₹1,800/sq ft',
+      price: '',
       popular: false
     },
     {
@@ -53,7 +53,7 @@ const ServicesSection = () => {
       title: 'Infrastructure Projects',
       description: 'Large-scale infrastructure development including commercial complexes and mixed-use developments.',
       features: ['Shopping Centers', 'Mixed-Use Developments', 'Commercial Complexes', 'Public Buildings'],
-      price: 'Starting from ₹2,500/sq ft',
+      price: '',
       popular: false
     }
   ];

@@ -60,19 +60,19 @@ const Header = () => {
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2">
               <Phone size={14} />
-              <span>+91 9999999999</span>
+              <span>+91 9225655607 / 9225655601</span>
             </div>
             <div className="flex items-center space-x-2">
               <MapPin size={14} />
-              <span>Pimpri Chinchwad, Pune</span>
+              <span>Hinjewadi, Pune</span>
             </div>
             <div className="flex items-center space-x-2">
               <Clock size={14} />
-              <span>Mon - Sat: 9:00 AM - 6:00 PM</span>
+              <span>Mon - Sat: 9:00 AM - 7:00 PM</span>
             </div>
           </div>
           <div className="text-gray-300">
-            Premium Construction Excellence Since 1999
+            Premium Construction Excellence Since 1978
           </div>
         </div>
       </div>
@@ -102,7 +102,7 @@ const Header = () => {
               </div>
               <div>
                 <h1 className={`text-2xl font-light ${isScrolled ? 'text-black' : 'text-black'}`}>
-                  PESGROUP
+                  PESHGROUP
                 </h1>
                 <p className={`text-xs ${isScrolled ? 'text-gray-600' : 'text-gray-600'} font-medium`}>
                   Premium Builders

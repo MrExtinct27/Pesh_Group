@@ -24,7 +24,7 @@ const HeroSection = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"
+          backgroundImage: "url('/midas0.jpeg')"
         }}
       >
         <div className="absolute inset-0 bg-black/60" />
@@ -37,7 +37,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block text-sm font-medium text-gray-300 mb-6 uppercase tracking-widest">
+            <span className="inline-block text-sm font-medium text-gray-200 mb-6 uppercase tracking-widest">
               Premium Construction Excellence
             </span>
           </motion.div>
@@ -103,14 +103,14 @@ const HeroSection = () => {
               <div className="flex items-center justify-center mb-3">
                 <Building2 size={24} className="text-gray-300" />
               </div>
-              <div className="text-3xl font-light mb-2">500+</div>
+              <div className="text-3xl font-light mb-2">9+</div>
               <div className="text-sm text-gray-300 uppercase tracking-wider">Projects Completed</div>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center mb-3">
                 <Users size={24} className="text-gray-300" />
               </div>
-              <div className="text-3xl font-light mb-2">25+</div>
+              <div className="text-3xl font-light mb-2">45+</div>
               <div className="text-sm text-gray-300 uppercase tracking-wider">Years Experience</div>
             </div>
             <div className="text-center">

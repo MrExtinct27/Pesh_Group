@@ -24,58 +24,41 @@ const ClientsTestimonialsSection = () => {
   const testimonials = [
     {
       id: 1,
-      name: 'Rajesh Kumar',
-      position: 'CEO, TechCorp Industries',
-      company: 'TechCorp Industries',
+      name: 'Vijayendra Surve',
+      position: 'Hashmap India Pvt Ltd.',
+      company: '',
       rating: 5,
-      text: 'PESGROUP delivered our corporate headquarters ahead of schedule and within budget. Their attention to detail and professional approach is unmatched.',
+      text: 'Midas Team is doing a fantastic job. Very responsive and supportive. I appreciate the team for their efforts to keep the building clean and safe.',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
     },
     {
       id: 2,
-      name: 'Priya Sharma',
-      position: 'Director, Manufacturing Solutions',
-      company: 'Manufacturing Solutions Ltd',
+      name: 'Amruta Bhatia',
+      position: 'MOOG India Technology Pvt Ltd.',
+      company: '',
       rating: 5,
-      text: 'The industrial complex they built for us is world-class. From planning to execution, every phase was handled with utmost professionalism.',
+      text: 'Midas is a clean and safe building and the view of Midas is fantastic.BMS team is very supportive',
       image: 'https://images.unsplash.com/photo-1494790108755-2616b0395111?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
     },
     {
       id: 3,
-      name: 'Amit Patel',
-      position: 'Project Manager, Real Estate Division',
-      company: 'Real Estate Division',
+      name: 'Rakesh Singh ',
+      position: 'Msystechnologies LLC',
+      company: '',
       rating: 5,
-      text: 'Outstanding quality and innovation. PESGROUP transformed our vision into reality with their cutting-edge construction techniques.',
+      text: 'Midas BMC Team is doing Great Job!. Pesh Groups services are extremely Good!!',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
     },
     {
       id: 4,
-      name: 'Sneha Reddy',
-      position: 'Operations Head, Logistics Hub',
-      company: 'Logistics Hub',
+      name: 'Abhijeet Durgavade',
+      position: 'Innoplexus Consulting Services Pvt Ltd.',
+      company: '',
       rating: 5,
-      text: 'The logistics facility exceeded our expectations. Superior construction quality and timely delivery made this project a huge success.',
+      text: 'Midas is a fantastic green building and very good facility management services provided by Midas Team.',
       image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
     },
-    {
-      id: 5,
-      name: 'Vikram Singh',
-      position: 'Chairman, Business Park',
-      company: 'Business Park Ventures',
-      rating: 5,
-      text: 'PESGROUP\'s expertise in commercial construction is remarkable. They delivered a state-of-the-art business park that stands as a landmark.',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
-    },
-    {
-      id: 6,
-      name: 'Kavya Nair',
-      position: 'Facility Manager, IT Campus',
-      company: 'IT Campus Solutions',
-      rating: 5,
-      text: 'From concept to completion, PESGROUP maintained the highest standards. Our IT campus is now a model for sustainable construction.',
-      image: 'https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
-    }
+
   ];
 
   // Duplicate arrays for seamless infinite scroll
