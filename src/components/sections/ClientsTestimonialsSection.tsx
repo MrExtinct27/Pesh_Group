@@ -2,25 +2,33 @@
 
 import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
+import Image from 'next/image';
 
 const ClientsTestimonialsSection = () => {
-  // Happy Clients Data
+  // Happy Clients Data — put your direct URLs here
   const happyClients = [
-    { name: 'Tata Group', logo: 'TG' },
-    { name: 'Reliance Industries', logo: 'RI' },
-    { name: 'Infosys', logo: 'IN' },
-    { name: 'Wipro', logo: 'WI' },
-    { name: 'Tech Mahindra', logo: 'TM' },
-    { name: 'L&T', logo: 'LT' },
-    { name: 'Bajaj Auto', logo: 'BA' },
-    { name: 'HDFC Bank', logo: 'HD' },
-    { name: 'ICICI Bank', logo: 'IC' },
-    { name: 'Godrej', logo: 'GD' },
-    { name: 'Mahindra Group', logo: 'MG' },
-    { name: 'Aditya Birla', logo: 'AB' }
+    { name: 'Tata Group', logo: '/logos/tata.png' },
+    { name: 'Capgemini', logo: '/logos/capgemini.png' },
+    { name: 'BVG', logo: '/logos/bvg.png' },
+    { name: 'Worldline', logo: '/logos/worldline.png' },
+    { name: 'T Cube', logo: '/logos/tcube.png' },
+    { name: 'Dassault Systems', logo: '/logos/dassault.png' },
+    { name: 'ATS Group', logo: '/logos/ats.png' },
+    { name: 'Harris Pye', logo: '/logos/harrispye.png' },
+    { name: 'Tudip', logo: '/logos/tudip.png' },
+    { name: 'Msys Technologies', logo: '/logos/msys.png' },
+    { name: 'Fiat', logo: '/logos/fiat.png' },
+    { name: 'MobiSoft', logo: '/logos/mobisoft.png' },
+    // { name: 'HashMap', logo: '/logos/hashmap.png' },
+    { name: 'Infineon', logo: '/logos/infineon.png' },
+    { name: 'Bluebinaries', logo: '/logos/bluebinaries.png' },
+    { name: 'Shore Auto', logo: '/logos/shoreauto.png' },
+    { name: 'MOOG', logo: '/logos/moog.png' },
+    { name: 'Innoplexus', logo: '/logos/innoplexus.png' },
+    { name: 'Obara', logo: '/logos/obara.png' },
   ];
 
-  // Testimonials Data
+  // Testimonials Data (unchanged)
   const testimonials = [
     {
       id: 1,
@@ -68,9 +76,8 @@ const ClientsTestimonialsSection = () => {
   return (
     <section className="py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -89,7 +96,7 @@ const ClientsTestimonialsSection = () => {
         </motion.div>
 
         {/* Happy Clients - Horizontal Animation */}
-        <motion.div 
+        <motion.div
           className="mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -99,21 +106,13 @@ const ClientsTestimonialsSection = () => {
           <h3 className="text-2xl font-medium text-center text-gray-900 mb-8">
             Our Happy Clients
           </h3>
-          
+
           <div className="relative">
             <div className="flex overflow-hidden">
-              <motion.div 
+              <motion.div
                 className="flex space-x-12 min-w-max"
-                animate={{
-                  x: [0, -1920], // Adjust based on content width
-                }}
-                transition={{
-                  x: {
-                    duration: 30,
-                    repeat: Infinity,
-                    ease: "linear",
-                  },
-                }}
+                animate={{ x: [0, -1920] }}
+                transition={{ x: { duration: 30, repeat: Infinity, ease: 'linear' } }}
               >
                 {extendedClients.map((client, index) => (
                   <motion.div
@@ -122,10 +121,15 @@ const ClientsTestimonialsSection = () => {
                     whileHover={{ scale: 1.05 }}
                   >
                     <div className="text-center">
-                      <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center mx-auto mb-2">
-                        <span className="text-white font-bold text-lg">
-                          {client.logo}
-                        </span>
+                      {/* ✅ render the image, not the URL string */}
+                      <div className="w-16 h-16 flex items-center justify-center mx-auto mb-2">
+                        <Image
+                          src={client.logo}
+                          alt={client.name}
+                          width={64}
+                          height={64}
+                          className="object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition"
+                        />
                       </div>
                       <p className="text-sm font-medium text-gray-900">{client.name}</p>
                     </div>
@@ -133,7 +137,7 @@ const ClientsTestimonialsSection = () => {
                 ))}
               </motion.div>
             </div>
-            
+
             {/* Gradient Overlays */}
             <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-white to-transparent pointer-events-none" />
             <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-white to-transparent pointer-events-none" />
@@ -150,21 +154,13 @@ const ClientsTestimonialsSection = () => {
           <h3 className="text-2xl font-medium text-center text-gray-900 mb-8">
             What Our Clients Say
           </h3>
-          
+
           <div className="relative">
             <div className="flex overflow-hidden">
-              <motion.div 
+              <motion.div
                 className="flex space-x-8 min-w-max"
-                animate={{
-                  x: [-1920, 0], // Reverse direction
-                }}
-                transition={{
-                  x: {
-                    duration: 40,
-                    repeat: Infinity,
-                    ease: "linear",
-                  },
-                }}
+                animate={{ x: [-1920, 0] }}
+                transition={{ x: { duration: 40, repeat: Infinity, ease: 'linear' } }}
               >
                 {extendedTestimonials.map((testimonial, index) => (
                   <motion.div
@@ -177,25 +173,16 @@ const ClientsTestimonialsSection = () => {
                       WebkitBoxOrient: 'vertical' as const,
                     }}
                   >
-                    {/* Quote Icon */}
                     <Quote size={32} className="text-gray-400 mb-4" />
-                    
-                    {/* Rating Stars */}
                     <div className="flex space-x-1 mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star key={i} size={16} className="text-yellow-400 fill-current" />
                       ))}
                     </div>
-                    
-                    {/* Testimonial Text */}
-                    <p className="text-gray-700 mb-6 leading-relaxed">
-                      "{testimonial.text}"
-                    </p>
-                    
-                    {/* Client Info */}
+                    <p className="text-gray-700 mb-6 leading-relaxed">"{testimonial.text}"</p>
                     <div className="flex items-center">
-                      <img 
-                        src={testimonial.image} 
+                      <img
+                        src={testimonial.image}
                         alt={testimonial.name}
                         className="w-12 h-12 rounded-full object-cover mr-4"
                       />
@@ -209,7 +196,7 @@ const ClientsTestimonialsSection = () => {
                 ))}
               </motion.div>
             </div>
-            
+
             {/* Gradient Overlays */}
             <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-white to-transparent pointer-events-none" />
             <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-white to-transparent pointer-events-none" />
@@ -217,17 +204,15 @@ const ClientsTestimonialsSection = () => {
         </motion.div>
 
         {/* Call to Action */}
-        <motion.div 
+        <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <p className="text-gray-600 mb-8">
-            Ready to join our list of satisfied clients?
-          </p>
-          <motion.button 
+          <p className="text-gray-600 mb-8">Ready to join our list of satisfied clients?</p>
+          <motion.button
             onClick={() => {
               const contactSection = document.querySelector('#contact');
               if (contactSection) {

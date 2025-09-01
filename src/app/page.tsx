@@ -4,15 +4,18 @@ import AboutSection from "@/components/sections/AboutSection";
 import PortfolioSection from "@/components/sections/PortfolioSection";
 import ClientsTestimonialsSection from "@/components/sections/ClientsTestimonialsSection";
 import ConsultationSection from "@/components/sections/ConsultationSection";
+import HappyClients from "@/components/sections/HappyClients";
+import Testimonials from "@/components/sections/Testimonials";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
+      <HappyClients />
       <ServicesSection />
       <AboutSection />
       <PortfolioSection />
-      <ClientsTestimonialsSection />
+      <Testimonials />
       <ConsultationSection />
     </>
   );

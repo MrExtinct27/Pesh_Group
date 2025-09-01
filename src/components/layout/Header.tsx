@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Phone, MapPin, Clock } from 'lucide-react';
+import { Menu, X, Phone, MapPin, Clock, Bold } from 'lucide-react';
+import Image from "next/image";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -60,55 +61,63 @@ const Header = () => {
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2">
               <Phone size={14} />
-              <span>+91 9225655607 / 9225655601</span>
+              <span>+91 9225655601 / 9225655607 </span>
             </div>
             <div className="flex items-center space-x-2">
               <MapPin size={14} />
-              <span>Hinjewadi, Pune</span>
+              <span>PCMC, Pune</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <Clock size={14} />
-              <span>Mon - Sat: 9:00 AM - 7:00 PM</span>
-            </div>
+           
           </div>
-          <div className="text-gray-300">
-            Premium Construction Excellence Since 1978
+          <div className="text-gray-100">
+            Premium Construction Excellence Since <span className="font-bold">1978</span>
           </div>
         </div>
       </div>
 
       {/* Main Header */}
-      <motion.header 
-        className={`sticky top-0 z-50 transition-all duration-500 ${
-          isScrolled 
-            ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-            : 'bg-transparent'
-        }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
+<motion.header 
+  className={`sticky top-0 z-50 transition-all duration-500 ${
+    isScrolled 
+      ? 'bg-white/40 backdrop-blur-lg shadow-md border-b border-white/20'
+      : 'bg-transparent'
+  }`}
+  initial={{ y: -100 }}
+  animate={{ y: 0 }}
+  transition={{ duration: 0.6 }}
+>
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             
             {/* Logo */}
-            <motion.div 
-              className="flex items-center space-x-3"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-            >
-              <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">PG</span>
-              </div>
-              <div>
-                <h1 className={`text-2xl font-light ${isScrolled ? 'text-black' : 'text-black'}`}>
-                  PESHGROUP
-                </h1>
-                <p className={`text-xs ${isScrolled ? 'text-gray-600' : 'text-gray-600'} font-medium`}>
-                  Premium Builders
-                </p>
-              </div>
-            </motion.div>
+
+<motion.div 
+  className="flex items-center space-x-3"
+  whileHover={{ scale: 1.02 }}
+  transition={{ duration: 0.2 }}
+>
+  {/* Logo */}
+  <div className="w-16 h-16 flex items-center justify-center">
+    <Image 
+      src="/logos/pesh_logo.png"  
+      alt="Pesh Group Logo"
+      width={64}
+      height={64}
+      className="object-contain"
+    />
+  </div>
+
+  <div>
+    <h1 className={`text-2xl font-light ${isScrolled ? 'text-black' : 'text-black'}`}>
+      Pesh Group
+    </h1>
+    <p className={`text-xs ${isScrolled ? 'text-gray-600' : 'text-gray-600'} font-medium`}>
+      Creating Landmarks
+    </p>
+  </div>
+</motion.div>
+
+
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">

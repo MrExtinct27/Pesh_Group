@@ -42,24 +42,57 @@ const HeroSection = () => {
             </span>
           </motion.div>
 
-          <motion.h1 
-            className="text-5xl md:text-7xl font-light text-white mb-8 leading-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Crafting Tomorrow's
-            <span className="block font-normal">Architectural Legacy</span>
-          </motion.h1>
+<motion.h1
+  className="text-4xl md:text-6xl font-light text-white mb-8 leading-tight text-left"
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+>
+  <span className="typewriter">Plan | Perform | Prevail | Pesh</span>
+
+  <style jsx>{`
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink {
+      0%, 100% { border-right-color: rgba(56,189,248,0.85); } /* sky-400 */
+      50% { border-right-color: transparent; }
+    }
+    @keyframes hideCursor {
+      to { border-right-color: transparent; }
+    }
+    .typewriter {
+      display: block;            /* starts at far left */
+      white-space: nowrap;
+      overflow: hidden;
+      border-right-width: 0.12em;   /* cursor width */
+      border-right-style: solid;
+      width: 0;                     /* start collapsed */
+      /* 1) type once  2) blink 5 times  3) remove cursor */
+      animation-name: typing, blink, hideCursor;
+      animation-duration: 4s, 0.8s, 0s;
+      animation-timing-function: steps(40, end), step-end, linear;
+      animation-iteration-count: 1, 5, 1;
+      animation-fill-mode: forwards, none, forwards;
+      animation-delay: 0s, 4s, 8s;  /* blink starts after typing; hideCursor after both */
+    }
+  `}</style>
+</motion.h1>
+
+
+
+
+
+
 
           <motion.p 
-            className="text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl"
+            className="text-xl text-gray-200 mb-12 leading-relaxed max-w-2xl"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Where visionary design meets precision engineering. We create extraordinary 
-            commercial spaces that define the future of urban architecture.
+          We plan with foresight, execute with precision, and create world-class office spaces designed for success today and built to inspire legacies tomorrow.
           </motion.p>
 
           <motion.div 
@@ -70,7 +103,7 @@ const HeroSection = () => {
           >
             <motion.button 
               onClick={handleDiscoverMore}
-              className="bg-white text-black px-8 py-4 font-medium hover:bg-gray-100 transition-colors duration-300 flex items-center"
+              className="bg-white text-black px-8 py-4 cursor-pointer font-medium hover:bg-gray-100 transition-colors duration-300 flex items-center"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -80,7 +113,7 @@ const HeroSection = () => {
             
             <motion.button 
               onClick={handleViewPortfolio}
-              className="border border-white text-white px-8 py-4 font-medium hover:bg-white hover:text-black transition-all duration-300"
+              className="border border-white text-white cursor-pointer px-8 py-4 font-medium hover:bg-white hover:text-black transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
