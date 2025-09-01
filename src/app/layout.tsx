@@ -10,11 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "BuildCraft Construction Co. - Building Your Dreams Into Reality",
   title: "Pesh Group - Premier Construction Services",
   description: "Professional construction services including residential, commercial, and industrial projects. Over 25 years of experience in building excellence.",
-  keywords: "construction, building, residential, commercial, industrial, renovation, remodeling",
-  authors: [{ name: "BuildCraft Construction Co." }],
   keywords: "construction, building, residential, commercial, industrial, renovation, remodeling, IT hubs, factories, warehouses, infrastructure",
   authors: [{ name: "PeshGroup Construction Co." }],
   viewport: "width=device-width, initial-scale=1",
