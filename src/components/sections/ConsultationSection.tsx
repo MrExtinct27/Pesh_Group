@@ -74,20 +74,33 @@ const ConsultationSection = () => {
     setErrors({});
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        projectType: '',
-        message: ''
+      // Send form data to API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-      
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          projectType: '',
+          message: ''
+        });
+        
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      } else {
+        throw new Error(result.error || 'Failed to submit form');
+      }
     } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } finally {
@@ -328,8 +341,10 @@ const ConsultationSection = () => {
                     <div>
                     <h4 className="font-medium text-gray-900 mb-1">Address</h4>
                     <p className="text-gray-600">
-                      123 Business District,<br />
-                      Pimpri Chinchwad, Pune, Maharashtra 411018
+                    Plot No.28/22,D-2,<br />
+                    Near KSB Pumps,Telco Road,<br />
+                    Pimpri Chinchwad, Pune,<br />
+                    Maharashtra 411018
                     </p>
                   </div>
                 </motion.div>
@@ -344,8 +359,8 @@ const ConsultationSection = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900 mb-1">Phone</h4>
-                    <p className="text-gray-600">+91 9999999999</p>
-                    <p className="text-gray-600">+91 8888888888</p>
+                    <p className="text-gray-600">+91 9225655607</p>
+                    <p className="text-gray-600">+91 9225655601</p>
                   </div>
                 </motion.div>
 
@@ -359,7 +374,7 @@ const ConsultationSection = () => {
                     </div>
                     <div>
                     <h4 className="font-medium text-gray-900 mb-1">Email</h4>
-                    <p className="text-gray-600">info@pesgroup.com</p>
+                    
                     <p className="text-gray-600">projects@pesgroup.com</p>
                     </div>
                 </motion.div>

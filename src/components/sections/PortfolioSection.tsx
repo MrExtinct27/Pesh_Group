@@ -9,6 +9,7 @@ const PortfolioSection = () => {
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
 
   const openProject = (project: any) => {
@@ -83,130 +84,294 @@ const PortfolioSection = () => {
   const categories = [
     { id: 'all', name: 'All Projects' },
     { id: 'commercial', name: 'Commercial' },
-    { id: 'industrial', name: 'Industrial' }
+    { id: 'industrial', name: 'Industrial' },
+    { id: 'it-offices', name: 'IT Offices' }
   ];
 
   const projects = [
     {
       id: 1,
-      title: 'Corporate Headquarters',
-      category: 'commercial',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      images: [
-        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
-      ],
-      location: 'Mumbai, India',
+      title: 'Midas Tower',
+      category: 'it-offices',
+      image: '/midas0.jpeg',
+              images: [
+          '/portfolio/MT/MT01.jpg',
+          '/portfolio/MT/MT02.JPG',
+          '/portfolio/MT/MT03.jpeg',
+          '/portfolio/MT/MT04.JPG',
+          '/portfolio/MT/MT05.jpeg'
+        ],
+      location: 'Hinjewadi, Pune',
       date: '2024',
-      area: '2.5M sq ft',
-      description: 'A premium corporate headquarters featuring sustainable design and modern architecture.',
-      details: 'This state-of-the-art corporate headquarters represents the pinnacle of commercial construction excellence. Featuring 45 floors of premium office space, sustainable LEED Gold certification, and cutting-edge smart building technology.',
-      features: ['LEED Gold Certified', 'Smart Building Technology', '45 Floors', 'Premium Amenities', 'Underground Parking', 'Rooftop Garden'],
+      area: '2,65,000 sq ft',
+      description: 'Grade A IT spaces built for performance, security, and productivity.',
+      details: 'Midas Tower is a A Grade IT office space project . It is  specifically designed to take your business to a whole new level of performance & productivity. Large efficient,Floor plates,clean,secured & well maintained premises. give me just one line explaining all this',
+      features: ['Strategic Location', 'Grade A IT Office', 'Green Building', 'Premium Amenities', 'Tallest IT Office', 'Rooftop Cafeteria'],
       budget: '₹500 Crores'
     },
     {
       id: 2,
-      title: 'Manufacturing Complex',
-      category: 'industrial',
-      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      title: 'Midas Infinite',
+      category: 'it-offices',
+      image: '/portfolio/MI/MI01.jpeg',
       images: [
-        'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+        '/portfolio/MI/MI01.jpeg',
+        '/portfolio/MI/MI02.jpeg',
+        '/portfolio/MI/MI03.jpeg',
+        '/portfolio/MI/MI04.jpeg',
+        '/portfolio/MI/MI05.jpeg'
+        
       ],
-      location: 'Pune, India',
+      location: 'Hinjewadi, Pune',
       date: '2024',
-      area: '1.8M sq ft',
-      description: 'State-of-the-art manufacturing facility with advanced automation systems.',
-      details: 'A cutting-edge manufacturing complex designed for Industry 4.0 operations. Features automated production lines, climate-controlled environments, and advanced safety systems.',
-      features: ['Automated Production Lines', 'Climate Control', 'Advanced Safety Systems', 'Quality Control Labs', 'Warehouse Integration'],
+      area: '45,000 sq ft',
+      description: 'Premium IT workspace with global standards and SEZ benefits.',
+      details: 'A world-class SEZ IT office project crafted to international standards, combining safety, security, sustainability, and robust infrastructure to deliver a future-ready workplace.Green building concept with natural light, ventilation, water conservation & rainwater harvesting.',
+      features: ['Green Building', 'SEZ Project', 'World Class Amenities', 'Ample Parking Spaces', 'Efficient Floor Plates'],
       budget: '₹300 Crores'
     },
     {
       id: 3,
-      title: 'Business Park',
+      title: 'Midas SEZ',
       category: 'commercial',
-      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: '/portfolio/MS/MS01.jpeg',
       images: [
-        'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1577495508048-b635879837f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+        '/portfolio/MS/MS01.jpeg',
+        '/portfolio/MS/MS02.jpeg',
+        '/portfolio/MS/MS03.JPG',
+        '/portfolio/MS/MS04.jpeg',
+        '/portfolio/MS/MS05.jpeg'
+        
       ],
-      location: 'Bangalore, India',
+      location: 'Hinjewadi, Pune',
       date: '2023',
-      area: '3.2M sq ft',
-      description: 'Multi-tenant business park with world-class amenities and green spaces.',
-      details: 'An expansive business park hosting multiple Fortune 500 companies. Features modern office towers, recreational facilities, and extensive green landscaping.',
-      features: ['Multiple Office Towers', 'Conference Centers', 'Food Courts', 'Gym & Spa', 'Green Landscaping', '24/7 Security'],
+      area: '62,000 sq ft',
+      description: 'Future-ready commercial spaces designed for performance, security, and long-term value.',
+      details: ' Ready possession bare shell  office space project.Features modern office towers, recreational facilities, and extensive green landscaping.',
+      features: ['Ideal for Commercial/IT offices', 'Modern Infrastructure', 'Modern Amenities',  'Green Landscaping', '24/7 Security'],
       budget: '₹750 Crores'
     },
     {
       id: 4,
-      title: 'Industrial Hub',
-      category: 'industrial',
-      image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      title: 'Ish Infotech',
+      category: 'it-offices',
+      image: '/portfolio/II/II01.jpg',
       images: [
-        'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1590479773265-7464e5d48118?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+        '/portfolio/II/II01.jpg',
+        '/portfolio/II/II02.JPG',
+        '/portfolio/II/II03.JPG',
+        '/portfolio/II/II04.JPG',
+        '/portfolio/II/II05.jpg'
+        
+        
       ],
-      location: 'Chennai, India',
+      location: 'Hinjewadi, Pune',
       date: '2023',
-      area: '2.1M sq ft',
-      description: 'Integrated industrial complex with logistics and warehouse facilities.',
-      details: 'A comprehensive industrial hub combining manufacturing, warehousing, and logistics. Strategically located with excellent connectivity to major transportation networks.',
-      features: ['Manufacturing Units', 'Warehouse Facilities', 'Logistics Center', 'Rail Connectivity', 'Power Infrastructure'],
+      area: '1,10,000 sq ft',
+      description: 'Modern IT hubs built to inspire productivity and empower businesses.',
+      details: 'Crafted for the modern workforce, these IT offices combine advanced facilities with eco-friendly design. From seamless functionality to reliable infrastructure, every detail is tailored to help businesses thrive. Strategically located with excellent connectivity to major transportation networks.',
+      features: ['Prime Location', 'Fully Furnished', '24/7 Security', 'Auditorium', 'Rooftop Cafeteria'],
       budget: '₹400 Crores'
     },
     {
       id: 5,
-      title: 'Tech Campus',
-      category: 'commercial',
-      image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      title: 'Pesh Technology Park',
+      category: 'it-offices',
+      image: 'portfolio/PTP/PTP01.JPG',
       images: [
-        'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1577495508048-b635879837f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+        '/portfolio/PTP/PTP01.JPG',
+        '/portfolio/PTP/PTP02.jpg',
+        '/portfolio/PTP/PTP03.jpg',
+        '/portfolio/PTP/PTP04.jpg',
+        '/portfolio/PTP/PTP05.jpg'
+        
       ],
-      location: 'Hyderabad, India',
+      location: 'Talwade, Pune',
       date: '2022',
-      area: '1.9M sq ft',
+      area: '85,000 sq ft',
       description: 'Innovation-focused technology campus with collaborative workspaces.',
-      details: 'A modern technology campus designed to foster innovation and collaboration. Features open workspaces, research labs, and state-of-the-art IT infrastructure.',
-      features: ['Open Workspaces', 'Research Labs', 'IT Infrastructure', 'Innovation Centers', 'Cafeterias', 'Recreation Areas'],
+      details: 'A modern technology campus designed to foster innovation and collaboration. With state-of-the-art infrastructure, natural surroundings, and thoughtful facilities, it creates an ideal environment for productivity and well-being.',
+      features: ['Recreational Zone', 'Grand Amphitheater', 'IT Infrastructure', 'Recreation Areas', 'Cafeterias'],
       budget: '₹350 Crores'
     },
     {
       id: 6,
-      title: 'Logistics Center',
+      title: 'Raj Motors',
       category: 'industrial',
-      image: 'https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: '/portfolio/RJM/RJM01.png',
       images: [
         'https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         'https://images.unsplash.com/photo-1590479773265-7464e5d48118?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
       ],
-      location: 'Delhi, India',
+      location: 'Chinchwad, Pune',
       date: '2022',
-      area: '2.8M sq ft',
-      description: 'Advanced logistics and distribution center with automated systems.',
-      details: 'A state-of-the-art logistics facility with automated sorting systems, temperature-controlled storage, and advanced inventory management technology.',
-      features: ['Automated Sorting', 'Temperature Control', 'Inventory Management', 'Loading Docks', 'Office Complex', 'Security Systems'],
+      area: '10,000 sq ft',
+      description: 'Advanced commercial center with automated systems.',
+      details: 'A state-of-the-art facility with automated systems, three-star facilities, and advanced management technology.',
+      features: ['Prime Location', 'Green Building', 'Water Conservation', 'Fire Safety', 'Office Complex', 'Security Systems'],
       budget: '₹450 Crores'
+    },
+    // Additional projects that will be shown when "View All Projects" is clicked
+    {
+      id: 7,
+      title: 'Tech Valley Hub',
+      category: 'it-offices',
+      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      ],
+      location: 'Mumbai, India',
+      date: '2021',
+      area: '2.5M sq ft',
+      description: 'Modern tech campus with sustainable design and smart infrastructure.',
+      details: 'A LEED Platinum certified technology campus featuring smart building systems, renewable energy integration, and collaborative innovation spaces.',
+      features: ['LEED Platinum Certified', 'Smart Building Systems', 'Renewable Energy', 'Innovation Labs', 'Green Roof', 'EV Charging'],
+      budget: '₹600 Crores'
+    },
+    {
+      id: 8,
+      title: 'Industrial Excellence Center',
+      category: 'Industrial',
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      ],
+      location: 'Ahmedabad, India',
+      date: '2021',
+      area: '3.5M sq ft',
+      description: 'Advanced manufacturing complex with robotics and automation.',
+      details: 'A cutting-edge industrial facility featuring Industry 4.0 technologies, robotic assembly lines, and sustainable manufacturing processes.',
+      features: ['Industry 4.0 Technology', 'Robotic Assembly', 'Sustainable Manufacturing', 'Quality Labs', 'Training Center', 'Green Energy'],
+      budget: '₹800 Crores'
+    },
+    {
+      id: 9,
+      title: 'Corporate Plaza',
+      category: 'Commercial',
+      image: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1577495508048-b635879837f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1590479773265-7464e5d48118?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      ],
+      location: 'Kolkata, India',
+      date: '2020',
+      area: '1.6M sq ft',
+      description: 'Premium office complex with luxury amenities and services.',
+      details: 'A prestigious corporate headquarters featuring premium office spaces, luxury amenities, and world-class business services.',
+      features: ['Premium Office Spaces', 'Luxury Amenities', 'Business Services', 'Conference Facilities', 'Fine Dining', 'Concierge Service'],
+      budget: '₹450 Crores'
+    },
+    {
+      id: 10,
+      title: 'Innovation District',
+      category: 'it-offices',
+      image: 'https://images.unsplash.com/photo-1590479773265-7464e5d48118?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1590479773265-7464e5d48118?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      ],
+      location: 'Pune, India',
+      date: '2020',
+      area: '2.2M sq ft',
+      description: 'Collaborative innovation hub for startups and enterprises.',
+      details: 'A dynamic innovation district designed to foster collaboration between startups, enterprises, and research institutions.',
+      features: ['Startup Incubator', 'Research Labs', 'Collaborative Spaces', 'Innovation Center', 'Tech Hub', 'Networking Areas'],
+      budget: '₹380 Crores'
+    },
+    {
+      id: 11,
+      title: 'Logistics Gateway',
+      category: 'Industrial',
+      image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      ],
+      location: 'Nagpur, India',
+      date: '2019',
+      area: '4.0M sq ft',
+      description: 'Strategic logistics hub with multimodal connectivity.',
+      details: 'A strategic logistics hub featuring multimodal connectivity, advanced warehousing systems, and efficient supply chain management.',
+      features: ['Multimodal Connectivity', 'Advanced Warehousing', 'Supply Chain Management', 'Cold Storage', 'Customs Facility', 'Security Systems'],
+      budget: '₹650 Crores'
+    },
+    {
+      id: 12,
+      title: 'Business Park',
+      category: 'Commercial',
+      image: 'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      ],
+      location: 'Indore, India',
+      date: '2019',
+      area: '2.8M sq ft',
+      description: 'Mixed-use business park with retail and office spaces.',
+      details: 'A comprehensive mixed-use development combining modern office spaces, retail outlets, and recreational facilities.',
+      features: ['Mixed-use Development', 'Office Spaces', 'Retail Outlets', 'Recreational Facilities', 'Food Courts', 'Parking Complex'],
+      budget: '₹520 Crores'
+    },
+    {
+      id: 13,
+      title: 'Data Center Campus',
+      category: 'it-offices',
+      image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      ],
+      location: 'Bangalore, India',
+      date: '2018',
+      area: '1.5M sq ft',
+      description: 'Tier-4 data center with advanced security and redundancy.',
+      details: 'A state-of-the-art Tier-4 data center featuring advanced security systems, redundant power infrastructure, and 99.99% uptime guarantee.',
+      features: ['Tier-4 Certification', 'Advanced Security', 'Redundant Power', '99.99% Uptime', 'Climate Control', '24/7 Monitoring'],
+      budget: '₹750 Crores'
+    },
+    {
+      id: 14,
+      title: 'Manufacturing Hub',
+      category: 'Industrial',
+      image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1590479773265-7464e5d48118?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      ],
+      location: 'Coimbatore, India',
+      date: '2018',
+      area: '3.8M sq ft',
+      description: 'Advanced manufacturing facility with lean production systems.',
+      details: 'A modern manufacturing facility implementing lean production systems, Six Sigma methodologies, and sustainable manufacturing practices.',
+      features: ['Lean Production', 'Six Sigma', 'Sustainable Manufacturing', 'Quality Control', 'Training Center', 'Green Energy'],
+      budget: '₹680 Crores'
     }
   ];
 
   const filteredProjects = activeFilter === 'all' 
     ? projects 
     : projects.filter(project => project.category === activeFilter);
+
+  // Show only first 6 projects initially, or all projects when "View All Projects" is clicked
+  const displayedProjects = showAllProjects ? filteredProjects : filteredProjects.slice(0, 6);
+
+  // Function to get display name for category
+  const getCategoryDisplayName = (categoryId: string) => {
+    const category = categories.find(cat => cat.id === categoryId);
+    return category ? category.name : categoryId;
+  };
 
   return (
     <section id="portfolio" className="py-20 bg-gray-50">
@@ -241,25 +406,35 @@ const PortfolioSection = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <div className="flex space-x-4">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveFilter(category.id)}
-                className={`px-6 py-3 font-medium transition-all duration-300 ${
-                  activeFilter === category.id
-                    ? 'bg-black text-white'
-                    : 'bg-white text-gray-700 hover:bg-gray-100'
-                }`}
-              >
-                {category.name}
-              </button>
-            ))}
+            {categories.map((category) => {
+              const projectCount = category.id === 'all' 
+                ? projects.length 
+                : projects.filter(project => project.category === category.id).length;
+              
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => {
+                    setActiveFilter(category.id);
+                    setShowAllProjects(false); // Reset to show only 6 projects when filter changes
+                  }}
+                  className={`px-6 py-3 font-medium transition-all duration-300 ${
+                    activeFilter === category.id
+                      ? 'bg-black text-white'
+                      : 'bg-white text-gray-700 hover:bg-gray-100'
+                  }`}
+                >
+                  {category.name}
+                  <span className="ml-2 text-xs opacity-75">({projectCount})</span>
+                </button>
+              );
+            })}
           </div>
         </motion.div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <motion.div
               key={project.id}
               className="group bg-white overflow-hidden hover:shadow-lg transition-all duration-500"
@@ -277,7 +452,7 @@ const PortfolioSection = () => {
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
                 <div className="absolute top-4 right-4 bg-white/90 px-3 py-1 text-sm font-medium text-gray-900">
-                  {project.category}
+                  {getCategoryDisplayName(project.category)}
                 </div>
               </div>
 
@@ -289,10 +464,6 @@ const PortfolioSection = () => {
                   <div className="flex items-center">
                     <MapPin size={16} className="mr-2" />
                     <span>{project.location}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Calendar size={16} className="mr-2" />
-                    <span>{project.date}</span>
                   </div>
                   <div className="flex items-center">
                     <Building size={16} className="mr-2" />
@@ -324,19 +495,20 @@ const PortfolioSection = () => {
         >
           <motion.button 
             onClick={() => {
-              // Show all projects by resetting filter
-              setActiveFilter('all');
-              // Scroll to portfolio top
-              const portfolioSection = document.querySelector('#portfolio');
-              if (portfolioSection) {
-                portfolioSection.scrollIntoView({ behavior: 'smooth' });
+              setShowAllProjects(!showAllProjects);
+              // Scroll to portfolio top when showing all projects
+              if (!showAllProjects) {
+                const portfolioSection = document.querySelector('#portfolio');
+                if (portfolioSection) {
+                  portfolioSection.scrollIntoView({ behavior: 'smooth' });
+                }
               }
             }}
             className="bg-black text-white px-8 py-4 font-medium hover:bg-gray-800 transition-colors duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            View All Projects
+            {showAllProjects ? 'Show Less Projects' : 'View All Projects'}
           </motion.button>
         </motion.div>
 
@@ -474,7 +646,7 @@ const PortfolioSection = () => {
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.4, delay: 0.5 }}
                     >
-                      {selectedProject.category}
+                      {getCategoryDisplayName(selectedProject.category)}
                     </motion.span>
                   </motion.div>
                   
@@ -529,14 +701,10 @@ const PortfolioSection = () => {
               <div className="p-8">
                 <h3 className="text-3xl font-light text-gray-900 mb-4">{selectedProject.title}</h3>
                 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div className="flex items-center">
                     <MapPin size={20} className="mr-3 text-gray-400" />
                     <span className="text-gray-600">{selectedProject.location}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Calendar size={20} className="mr-3 text-gray-400" />
-                    <span className="text-gray-600">{selectedProject.date}</span>
                   </div>
                   <div className="flex items-center">
                     <Building size={20} className="mr-3 text-gray-400" />
@@ -548,34 +716,15 @@ const PortfolioSection = () => {
                   {selectedProject.details}
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
-                    <h4 className="text-xl font-medium text-gray-900 mb-4">Key Features</h4>
-                    <div className="space-y-2">
-                      {selectedProject.features.map((feature: string, idx: number) => (
-                        <div key={idx} className="flex items-center">
-                          <div className="w-2 h-2 bg-black rounded-full mr-3"></div>
-                          <span className="text-gray-600">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h4 className="text-xl font-medium text-gray-900 mb-4">Project Investment</h4>
-                    <div className="text-2xl font-light text-gray-900 mb-4">{selectedProject.budget}</div>
-                    <button 
-                      onClick={() => {
-                        closeModal();
-                        const contactSection = document.querySelector('#contact');
-                        if (contactSection) {
-                          contactSection.scrollIntoView({ behavior: 'smooth' });
-                        }
-                      }}
-                      className="bg-black text-white px-6 py-3 font-medium hover:bg-gray-800 transition-colors duration-300"
-                    >
-                      Start Similar Project
-                    </button>
+                <div>
+                  <h4 className="text-xl font-medium text-gray-900 mb-4">Key Features</h4>
+                  <div className="space-y-2">
+                    {selectedProject.features.map((feature: string, idx: number) => (
+                      <div key={idx} className="flex items-center">
+                        <div className="w-2 h-2 bg-black rounded-full mr-3"></div>
+                        <span className="text-gray-600">{feature}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

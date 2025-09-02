@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowUp, MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import Image from 'next/image';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -32,15 +33,24 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             className="space-y-4"
           >
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-black font-bold text-lg">PG</span>
-              </div>
-              <div>
-                <h3 className="text-xl font-light">PESGROUP</h3>
-                <p className="text-gray-400 text-sm">Premium Builders</p>
-              </div>
-            </div>
+            <div className="w-16 h-16 flex items-center justify-center">
+               <Image 
+      src="/logos/pesh_logo.png"  
+      alt="Pesh Group Logo"
+      width={64}
+      height={64}
+      className="object-contain"
+    />
+  </div>
+
+  <div>
+    <h1 className="text-2xl font-light text-white">
+      Pesh Group
+    </h1>
+    <p className="text-xs text-gray-400 font-medium">
+      Creating Landmarks
+    </p>
+  </div>
             
             <p className="text-gray-400 leading-relaxed">
               Building excellence in commercial construction since 1978. 

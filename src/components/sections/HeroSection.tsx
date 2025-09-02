@@ -136,7 +136,7 @@ const HeroSection = () => {
               <div className="flex items-center justify-center mb-3">
                 <Building2 size={24} className="text-gray-300" />
               </div>
-              <div className="text-3xl font-light mb-2">9+</div>
+              <div className="text-3xl font-light mb-2">30+</div>
               <div className="text-sm text-gray-300 uppercase tracking-wider">Projects Completed</div>
             </div>
             <div className="text-center">

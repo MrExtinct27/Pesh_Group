@@ -1,32 +1,116 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Award, Users, Building2, Target } from 'lucide-react';
+import { Award, Users, Building2, Target, Bold } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+
+// Custom hook for animated counting
+const useCountUp = (end: number, duration: number = 2000) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let animationFrame: number;
+    
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          let startTime: number;
+          let currentCount = 0;
+          const increment = Math.max(1, Math.ceil(end / (duration / 16))); // 60fps animation
+
+          const animate = (currentTime: number) => {
+            if (!startTime) startTime = currentTime;
+            
+            if (currentCount < end) {
+              currentCount = Math.min(currentCount + increment, end);
+              setCount(currentCount);
+              
+              if (currentCount < end) {
+                animationFrame = requestAnimationFrame(animate);
+              }
+            }
+          };
+
+          animationFrame = requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+      observer.disconnect();
+    };
+  }, [end, duration]);
+
+  return { count, ref };
+};
+
+// Animated Counter Component
+const AnimatedCounter = ({ number, text, icon: IconComponent, index }: {
+  number: string;
+  text: string;
+  icon: any;
+  index: number;
+}) => {
+  // Extract numeric value and suffix (e.g., "100+" -> 100, "+")
+  const numericMatch = number.match(/^(\d+)(.*)$/);
+  const numericValue = numericMatch ? parseInt(numericMatch[1]) : 0;
+  const suffix = numericMatch ? numericMatch[2] : '';
+  
+  const { count, ref } = useCountUp(numericValue, 2000);
+
+  return (
+    <motion.div 
+      className="text-center"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      whileHover={{ scale: 1.05 }}
+    >
+      <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center mx-auto mb-4">
+        <IconComponent size={32} className="text-white" />
+      </div>
+      <div className="text-3xl font-light text-gray-900 mb-2" ref={ref}>
+        {count.toLocaleString()}{suffix}
+      </div>
+      <div className="text-sm text-gray-600 uppercase tracking-wider">{text}</div>
+    </motion.div>
+  );
+};
 
 const AboutSection = () => {
   const achievements = [
-    { icon: Building2, number: '500+', text: 'Projects Completed' },
-    { icon: Users, number: '50+', text: 'Expert Team Members' },
-    { icon: Award, number: '25+', text: 'Years of Excellence' },
-    { icon: Target, number: '100%', text: 'Client Satisfaction' }
+    { icon: Users, number: '100+', text: 'Expert Team Members' },
+    { icon: Award, number: '250000', text: 'Developed Area' },
+    { icon: Award, number: '20000', text: 'Under Developed Area' },
+    { icon: Target, number: '100+', text: 'Satisfied Clients ' }
   ];
 
   const leadership = [
     {
-      name: 'Pradeep Gadkari',
-      role: 'Founder & CEO',
+      name: 'Sunil Peswani',
+      role: 'CEO',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      description: 'Visionary leader with 25+ years in commercial construction and development.'
+      description: 'Visionary leader with 25+ years of experience in commercial construction and development.'
     },
     {
-      name: 'Sarah Johnson',
-      role: 'Chief Architect',
+      name: 'Ram Peswani',
+      role: 'Founder',
       image: 'https://images.unsplash.com/photo-1494790108755-2616b0395111?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      description: 'Award-winning architect specializing in sustainable commercial design.'
+      description: 'Founder whose vision in 1978 turned dreams into enduring landmarks.'
     },
     {
-      name: 'Michael Chen',
-      role: 'Construction Director',
+      name: 'Rashmi Peswani',
+      role: 'CMO',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
       description: 'Expert in large-scale commercial and industrial project management.'
     }
@@ -48,10 +132,10 @@ const AboutSection = () => {
             About PESGROUP
           </span>
           <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
-            Building Excellence Since 1999
+            Building Excellence Since 1978
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            For over two decades, PESGROUP has been at the forefront of commercial construction, 
+            For over four decades, PESHGROUP has been at the forefront of commercial construction, 
             delivering landmark projects that define skylines and shape communities.
           </p>
         </motion.div>
@@ -71,18 +155,19 @@ const AboutSection = () => {
             </h3>
             <div className="space-y-6 text-gray-600 leading-relaxed">
               <p>
-                Founded in 1999 with a vision to transform the commercial construction landscape, 
-                PESGROUP has grown from a small team of dedicated professionals to one of India's 
-                most respected construction companies.
+              Founded in 1978 by <strong>Mr. Ram Peswani</strong> as Pesh Electronics, <strong>Pesh Group </strong>has grown over four decades from a single company into a conglomerate of 15 businesses. 
+              Since 1998, under the leadership of <strong>Mr. Sunil Ram Peswani</strong>, the group has emerged as a leader in Grade A commercial real estate.
+              </p>
+              
+              <p>
+              Pesh Group is recognized for its commitment, integrity, and client-focused approach. 
+              The company provides premium IT office spaces, industrial facilities, SEZ units, boutique offices, and showrooms on both lease and sale. 
+              
               </p>
               <p>
                 Our commitment to quality, innovation, and sustainable practices has earned us 
                 the trust of leading corporations and developers across the country. We don't just 
                 build structures; we create environments where businesses thrive and communities flourish.
-              </p>
-              <p>
-                Today, with over 500 successfully completed projects and a team of 50+ experts, 
-                we continue to push the boundaries of what's possible in commercial construction.
               </p>
             </div>
           </motion.div>
@@ -112,26 +197,15 @@ const AboutSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {achievements.map((achievement, index) => {
-            const IconComponent = achievement.icon;
-            return (
-              <motion.div 
-                key={achievement.text}
-                className="text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <IconComponent size={32} className="text-white" />
-                </div>
-                <div className="text-3xl font-light text-gray-900 mb-2">{achievement.number}</div>
-                <div className="text-sm text-gray-600 uppercase tracking-wider">{achievement.text}</div>
-              </motion.div>
-            );
-          })}
+          {achievements.map((achievement, index) => (
+            <AnimatedCounter
+              key={achievement.text}
+              number={achievement.number}
+              text={achievement.text}
+              icon={achievement.icon}
+              index={index}
+            />
+          ))}
         </motion.div>
 
         {/* Leadership Team */}
