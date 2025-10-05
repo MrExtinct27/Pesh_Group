@@ -1,35 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Building, Factory, Warehouse, ArrowRight } from 'lucide-react';
+import { Building, Factory, Warehouse } from 'lucide-react';
 
 const ServicesSection = () => {
-  const handleServiceInquiry = (serviceName: string) => {
-    const contactSection = document.querySelector('#contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-    // Pre-fill the form with the service type
-    setTimeout(() => {
-      const projectTypeSelect = document.querySelector('#projectType') as HTMLSelectElement;
-      if (projectTypeSelect) {
-        if (serviceName.includes('Commercial')) {
-          projectTypeSelect.value = 'commercial';
-        } else if (serviceName.includes('Industrial')) {
-          projectTypeSelect.value = 'industrial';
-        } else if (serviceName.includes('Infrastructure')) {
-          projectTypeSelect.value = 'infrastructure';
-        }
-      }
-    }, 100);
-  };
 
-  const handleGetQuote = () => {
-    const contactSection = document.querySelector('#contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const services = [
     {
@@ -127,40 +102,11 @@ const ServicesSection = () => {
                   ))}
                 </div>
 
-                <motion.button 
-                  onClick={() => handleServiceInquiry(service.title)}
-                  className="w-full bg-black text-white py-3 px-6 font-medium hover:bg-gray-800 transition-colors duration-300 flex items-center justify-center"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Learn More
-                  <ArrowRight className="ml-2" size={16} />
-                </motion.button>
               </motion.div>
             );
           })}
         </div>
 
-        {/* Bottom CTA */}
-        <motion.div 
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <p className="text-gray-600 mb-8">
-            Ready to start your commercial construction project?
-          </p>
-          <motion.button 
-            onClick={handleGetQuote}
-            className="bg-black text-white px-8 py-4 font-medium hover:bg-gray-800 transition-colors duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Get Quote
-          </motion.button>
-        </motion.div>
       </div>
     </section>
   );

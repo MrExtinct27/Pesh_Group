@@ -46,11 +46,15 @@ const Header = () => {
   };
 
   const handleEnquireClick = () => {
-    const contactSection = document.querySelector('#contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+    const scheduleSection = document.querySelector('#schedule-visit');
+    if (scheduleSection) {
+      scheduleSection.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMobileMenuOpen(false);
+  };
+
+  const handleLogoClick = () => {
+    window.location.reload();
   };
 
   return (
@@ -91,8 +95,9 @@ const Header = () => {
             
             {/* Logo */}
 
-<motion.div 
-  className="flex items-center space-x-3"
+<motion.button 
+  onClick={handleLogoClick}
+  className="flex items-center space-x-3 cursor-pointer"
   whileHover={{ scale: 1.02 }}
   transition={{ duration: 0.2 }}
 >
@@ -115,7 +120,7 @@ const Header = () => {
       Creating Landmarks
     </p>
   </div>
-</motion.div>
+</motion.button>
 
 
 

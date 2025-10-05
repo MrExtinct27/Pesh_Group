@@ -6,6 +6,9 @@ import ClientsTestimonialsSection from "@/components/sections/ClientsTestimonial
 import ConsultationSection from "@/components/sections/ConsultationSection";
 import HappyClients from "@/components/sections/HappyClients";
 import Testimonials from "@/components/sections/Testimonials";
+import CompanyTimelineSection from "@/components/sections/CompanyTimelineSection";
+import FAQSection from "@/components/sections/FAQSection";
+import ScheduleVisitSection from "@/components/sections/ScheduleVisitSection";
 
 export default function Home() {
   return (
@@ -14,9 +17,11 @@ export default function Home() {
       <HappyClients />
       <ServicesSection />
       <AboutSection />
+      <CompanyTimelineSection />
       <PortfolioSection />
       <Testimonials />
-      <ConsultationSection />
+      <FAQSection />
+      <ScheduleVisitSection />
     </>
   );
 }

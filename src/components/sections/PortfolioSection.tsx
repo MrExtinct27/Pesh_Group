@@ -198,7 +198,7 @@ const PortfolioSection = () => {
       id: 6,
       title: 'Raj Motors',
       category: 'industrial',
-      image: '/portfolio/RJM/RJM01.png',
+      image: '/portfolio/RJM/RJM01. png',
       images: [
         'https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         'https://images.unsplash.com/photo-1590479773265-7464e5d48118?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
