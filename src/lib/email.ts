@@ -50,7 +50,7 @@ export const sendEmailWithSendGrid = async (emailData: {
 };
 
 // Option 2: Nodemailer with SMTP (Gmail, Outlook, etc.)
-export const sendEmailWithSMTP = async (emailData: {
+export const sendEmailWithSMTP = async (_emailData: {
   to: string;
   subject: string;
   text: string;
@@ -59,16 +59,6 @@ export const sendEmailWithSMTP = async (emailData: {
   // This would require installing nodemailer: npm install nodemailer
   // and setting up SMTP credentials in environment variables
   
-  const SMTP_CONFIG = {
-    host: process.env.SMTP_HOST || 'smtp.gmail.com',
-    port: parseInt(process.env.SMTP_PORT || '587'),
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  };
-
   // Implementation would go here with nodemailer
   // For now, this is a placeholder
   throw new Error('SMTP email service not implemented. Please use SendGrid or implement nodemailer.');

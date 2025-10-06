@@ -1,18 +1,34 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ArrowRight, Calendar, MapPin, Building, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+  images: string[];
+  location: string;
+  date: string;
+  area: string;
+  description: string;
+  details: string;
+  features: string[];
+  budget: string;
+}
 
 const PortfolioSection = () => {
   const [activeFilter, setActiveFilter] = useState('all');
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showAllProjects, setShowAllProjects] = useState(false);
 
 
-  const openProject = (project: any) => {
+  const openProject = (project: Project) => {
     setSelectedProject(project);
     setCurrentSlide(0); // Reset to first slide
     setIsModalOpen(true);
@@ -26,21 +42,21 @@ const PortfolioSection = () => {
     document.body.style.overflow = 'unset';
   };
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     if (selectedProject && selectedProject.images) {
       setCurrentSlide((prev) => 
         prev === selectedProject.images.length - 1 ? 0 : prev + 1
       );
     }
-  };
+  }, [selectedProject]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     if (selectedProject && selectedProject.images) {
       setCurrentSlide((prev) => 
         prev === 0 ? selectedProject.images.length - 1 : prev - 1
       );
     }
-  };
+  }, [selectedProject]);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
@@ -66,7 +82,7 @@ const PortfolioSection = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, [isModalOpen, selectedProject]);
+  }, [isModalOpen, selectedProject, nextSlide, prevSlide]);
 
   // Auto-play slideshow
   useEffect(() => {
@@ -79,7 +95,7 @@ const PortfolioSection = () => {
     }, 2000); // Changed to 2 seconds for faster, more engaging transitions
 
     return () => clearInterval(interval);
-  }, [isModalOpen, selectedProject, currentSlide]);
+  }, [isModalOpen, selectedProject, currentSlide, nextSlide]);
 
   const categories = [
     { id: 'all', name: 'All Projects' },
@@ -445,9 +461,11 @@ const PortfolioSection = () => {
               whileHover={{ y: -5 }}
             >
               <div className="relative overflow-hidden">
-                <img 
+                <Image 
                   src={project.image} 
                   alt={project.title}
+                  width={400}
+                  height={256}
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />

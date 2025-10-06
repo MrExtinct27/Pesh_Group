@@ -2,7 +2,7 @@
 
 import { Wrapper, Status } from '@googlemaps/react-wrapper';
 import { useEffect, useRef, useState } from 'react';
-import { MapPin, Building2, Calendar, DollarSign } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 
 interface ProjectMarker {
   id: number;
@@ -114,7 +114,7 @@ const GoogleMapComponent: React.FC<GoogleMapComponentProps> = ({ map, markers, o
     });
 
     // Listen for custom marker click events
-    const handleMarkerClick = (event: any) => {
+    const handleMarkerClick = (event: CustomEvent) => {
       const markerId = event.detail;
       const marker = markers.find(m => m.id === markerId);
       if (marker && onMarkerClick) {
@@ -306,3 +306,4 @@ const GoogleMap: React.FC<GoogleMapProps> = ({
 
 export default GoogleMap;
 export type { ProjectMarker };
+
