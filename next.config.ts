@@ -9,6 +9,7 @@ module.exports = {
       { protocol: 'https', hostname: 'upload.wikimedia.org' },
       { protocol: 'https', hostname: 'bvgindia.com' },
       { protocol: 'https', hostname: 'tudip.com' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
       // add other domains you use
     ],
   },
