@@ -4,6 +4,20 @@ import { Wrapper, Status } from '@googlemaps/react-wrapper';
 import { useEffect, useRef, useState } from 'react';
 import { MapPin } from 'lucide-react';
 
+type MarkerClickDetail = {
+  id?: number;
+  lat?: number;
+  lng?: number;
+  [key: string]: unknown;
+};
+
+declare global {
+  interface WindowEventMap {
+    /** Custom event fired when an infoWindow "View Details" is clicked */
+    markerClick: CustomEvent<MarkerClickDetail>;
+  }
+}
+
 interface ProjectMarker {
   id: number;
   title: string;
@@ -35,7 +49,6 @@ const GoogleMapComponent: React.FC<GoogleMapComponentProps> = ({ map, markers, o
   useEffect(() => {
     const newInfoWindow = new google.maps.InfoWindow();
     setInfoWindow(newInfoWindow);
-
     return () => {
       newInfoWindow.close();
     };
@@ -44,16 +57,17 @@ const GoogleMapComponent: React.FC<GoogleMapComponentProps> = ({ map, markers, o
   useEffect(() => {
     if (!map || !infoWindow) return;
 
-    // Clear existing markers
     const mapMarkers: google.maps.Marker[] = [];
 
     markers.forEach((markerData) => {
       const marker = new google.maps.Marker({
         position: markerData.position,
-        map: map,
+        map,
         title: markerData.title,
         icon: {
-          url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+          url:
+            'data:image/svg+xml;charset=UTF-8,' +
+            encodeURIComponent(`
             <svg width="40" height="50" viewBox="0 0 40 50" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M20 0C9.0 0 0 9.0 0 20C0 35 20 50 20 50S40 35 40 20C40 9.0 31.0 0 20 0Z" fill="#ea580c"/>
               <circle cx="20" cy="20" r="8" fill="white"/>
@@ -61,14 +75,16 @@ const GoogleMapComponent: React.FC<GoogleMapComponentProps> = ({ map, markers, o
             </svg>
           `),
           scaledSize: new google.maps.Size(40, 50),
-          anchor: new google.maps.Point(20, 50)
-        }
+          anchor: new google.maps.Point(20, 50),
+        },
       });
 
+      // HTML content rendered inside InfoWindow (uses inline onclick to dispatch a CustomEvent)
       const infoContent = `
         <div style="max-width: 300px; padding: 12px;">
           <img src="${markerData.image}" alt="${markerData.title}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;" />
           <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: bold; color: #1f2937;">${markerData.title}</h3>
+
           <div style="display: flex; align-items: center; margin-bottom: 6px; color: #6b7280;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
@@ -76,6 +92,7 @@ const GoogleMapComponent: React.FC<GoogleMapComponentProps> = ({ map, markers, o
             </svg>
             <span style="font-size: 14px;">${markerData.location}</span>
           </div>
+
           <div style="display: flex; align-items: center; margin-bottom: 6px; color: #6b7280;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -85,6 +102,7 @@ const GoogleMapComponent: React.FC<GoogleMapComponentProps> = ({ map, markers, o
             </svg>
             <span style="font-size: 14px;">${markerData.date}</span>
           </div>
+
           <div style="display: flex; align-items: center; margin-bottom: 12px; color: #6b7280;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;">
               <line x1="12" y1="1" x2="12" y2="23"></line>
@@ -92,9 +110,11 @@ const GoogleMapComponent: React.FC<GoogleMapComponentProps> = ({ map, markers, o
             </svg>
             <span style="font-size: 14px; font-weight: 600; color: #ea580c;">${markerData.budget}</span>
           </div>
+
           <div style="text-align: center;">
-            <button onclick="window.dispatchEvent(new CustomEvent('markerClick', { detail: ${markerData.id} }))" 
-                    style="background: linear-gradient(135deg, #ea580c, #dc2626); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+            <button
+              onclick="window.dispatchEvent(new CustomEvent('markerClick', { detail: { id: ${markerData.id} } }))"
+              style="background: linear-gradient(135deg, #ea580c, #dc2626); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
               View Details
             </button>
           </div>
@@ -104,28 +124,25 @@ const GoogleMapComponent: React.FC<GoogleMapComponentProps> = ({ map, markers, o
       marker.addListener('click', () => {
         infoWindow.setContent(infoContent);
         infoWindow.open(map, marker);
-        
-        if (onMarkerClick) {
-          onMarkerClick(markerData);
-        }
+
+        if (onMarkerClick) onMarkerClick(markerData);
       });
 
       mapMarkers.push(marker);
     });
 
-    // Listen for custom marker click events
-    const handleMarkerClick = (event: CustomEvent) => {
-      const markerId = event.detail;
-      const marker = markers.find(m => m.id === markerId);
-      if (marker && onMarkerClick) {
-        onMarkerClick(marker);
-      }
+    // Handle custom "markerClick" events (typed via WindowEventMap augmentation)
+    const handleMarkerClick = (event: WindowEventMap['markerClick']) => {
+      const markerId = event.detail?.id;
+      if (markerId == null) return;
+      const marker = markers.find((m) => m.id === markerId);
+      if (marker && onMarkerClick) onMarkerClick(marker);
     };
 
     window.addEventListener('markerClick', handleMarkerClick);
 
     return () => {
-      mapMarkers.forEach(marker => marker.setMap(null));
+      mapMarkers.forEach((marker) => marker.setMap(null));
       window.removeEventListener('markerClick', handleMarkerClick);
     };
   }, [map, markers, infoWindow, onMarkerClick]);
@@ -143,102 +160,30 @@ const Map: React.FC<MapProps> = ({ center, zoom, markers, onMarkerClick }) => {
         center,
         zoom,
         styles: [
-          {
-            featureType: 'all',
-            elementType: 'geometry.fill',
-            stylers: [{ weight: '2.00' }]
-          },
-          {
-            featureType: 'all',
-            elementType: 'geometry.stroke',
-            stylers: [{ color: '#9c9c9c' }]
-          },
-          {
-            featureType: 'all',
-            elementType: 'labels.text',
-            stylers: [{ visibility: 'on' }]
-          },
-          {
-            featureType: 'landscape',
-            elementType: 'all',
-            stylers: [{ color: '#f2f2f2' }]
-          },
-          {
-            featureType: 'landscape',
-            elementType: 'geometry.fill',
-            stylers: [{ color: '#ffffff' }]
-          },
-          {
-            featureType: 'landscape.man_made',
-            elementType: 'geometry.fill',
-            stylers: [{ color: '#ffffff' }]
-          },
-          {
-            featureType: 'poi',
-            elementType: 'all',
-            stylers: [{ visibility: 'off' }]
-          },
-          {
-            featureType: 'road',
-            elementType: 'all',
-            stylers: [{ saturation: -100 }, { lightness: 45 }]
-          },
-          {
-            featureType: 'road',
-            elementType: 'geometry.fill',
-            stylers: [{ color: '#eeeeee' }]
-          },
-          {
-            featureType: 'road',
-            elementType: 'labels.text.fill',
-            stylers: [{ color: '#7b7b7b' }]
-          },
-          {
-            featureType: 'road',
-            elementType: 'labels.text.stroke',
-            stylers: [{ color: '#ffffff' }]
-          },
-          {
-            featureType: 'road.highway',
-            elementType: 'all',
-            stylers: [{ visibility: 'simplified' }]
-          },
-          {
-            featureType: 'road.arterial',
-            elementType: 'labels.icon',
-            stylers: [{ visibility: 'off' }]
-          },
-          {
-            featureType: 'transit',
-            elementType: 'all',
-            stylers: [{ visibility: 'off' }]
-          },
-          {
-            featureType: 'water',
-            elementType: 'all',
-            stylers: [{ color: '#46bcec' }, { visibility: 'on' }]
-          },
-          {
-            featureType: 'water',
-            elementType: 'geometry.fill',
-            stylers: [{ color: '#c8d7d4' }]
-          },
-          {
-            featureType: 'water',
-            elementType: 'labels.text.fill',
-            stylers: [{ color: '#070707' }]
-          },
-          {
-            featureType: 'water',
-            elementType: 'labels.text.stroke',
-            stylers: [{ color: '#ffffff' }]
-          }
+          { featureType: 'all', elementType: 'geometry.fill', stylers: [{ weight: '2.00' }] },
+          { featureType: 'all', elementType: 'geometry.stroke', stylers: [{ color: '#9c9c9c' }] },
+          { featureType: 'all', elementType: 'labels.text', stylers: [{ visibility: 'on' }] },
+          { featureType: 'landscape', elementType: 'all', stylers: [{ color: '#f2f2f2' }] },
+          { featureType: 'landscape', elementType: 'geometry.fill', stylers: [{ color: '#ffffff' }] },
+          { featureType: 'landscape.man_made', elementType: 'geometry.fill', stylers: [{ color: '#ffffff' }] },
+          { featureType: 'poi', elementType: 'all', stylers: [{ visibility: 'off' }] },
+          { featureType: 'road', elementType: 'all', stylers: [{ saturation: -100 }, { lightness: 45 }] },
+          { featureType: 'road', elementType: 'geometry.fill', stylers: [{ color: '#eeeeee' }] },
+          { featureType: 'road', elementType: 'labels.text.fill', stylers: [{ color: '#7b7b7b' }] },
+          { featureType: 'road', elementType: 'labels.text.stroke', stylers: [{ color: '#ffffff' }] },
+          { featureType: 'road.highway', elementType: 'all', stylers: [{ visibility: 'simplified' }] },
+          { featureType: 'road.arterial', elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
+          { featureType: 'transit', elementType: 'all', stylers: [{ visibility: 'off' }] },
+          { featureType: 'water', elementType: 'all', stylers: [{ color: '#46bcec' }, { visibility: 'on' }] },
+          { featureType: 'water', elementType: 'geometry.fill', stylers: [{ color: '#c8d7d4' }] },
+          { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#070707' }] },
+          { featureType: 'water', elementType: 'labels.text.stroke', stylers: [{ color: '#ffffff' }] },
         ],
         mapTypeControl: false,
         streetViewControl: false,
         fullscreenControl: true,
         zoomControl: true,
-        gestureHandling: 'cooperative'
+        gestureHandling: 'cooperative',
       });
       setMap(newMap);
     }
@@ -287,13 +232,13 @@ interface GoogleMapProps {
   className?: string;
 }
 
-const GoogleMap: React.FC<GoogleMapProps> = ({ 
-  apiKey, 
-  center, 
-  zoom, 
-  markers, 
-  onMarkerClick, 
-  className = '' 
+const GoogleMap: React.FC<GoogleMapProps> = ({
+  apiKey,
+  center,
+  zoom,
+  markers,
+  onMarkerClick,
+  className = '',
 }) => {
   return (
     <div className={`w-full h-full ${className}`}>
@@ -306,4 +251,3 @@ const GoogleMap: React.FC<GoogleMapProps> = ({
 
 export default GoogleMap;
 export type { ProjectMarker };
-
