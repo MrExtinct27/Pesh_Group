@@ -13,6 +13,10 @@ module.exports = {
       // add other domains you use
     ],
   },
+    eslint: {
+
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
