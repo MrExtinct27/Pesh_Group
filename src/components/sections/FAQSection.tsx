@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { ChevronDown, MessageCircle, Building2, Clock, DollarSign, Shield, Wrench } from 'lucide-react';
+import { ChevronDown, MessageCircle, Building2 } from 'lucide-react';
 
 const FAQSection = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
@@ -14,80 +14,37 @@ const FAQSection = () => {
   const faqCategories = [
     {
       icon: Building2,
-      name: 'Projects & Services',
+      name: 'General',
       color: 'text-gray-700',
-      bgColor: 'bg-gray-100'
-    },
-    {
-      icon: Clock,
-      name: 'Timeline & Process',
-      color: 'text-gray-600',
-      bgColor: 'bg-gray-50'
-    },
-    {
-      icon: DollarSign,
-      name: 'Pricing & Payments',
-      color: 'text-black',
-      bgColor: 'bg-gray-200'
-    },
-    {
-      icon: Shield,
-      name: 'Quality & Safety',
-      color: 'text-gray-800',
       bgColor: 'bg-gray-100'
     }
   ];
 
   const faqs = [
     {
-      category: 'Projects & Services',
-      question: 'What types of construction projects do you handle?',
-      answer: 'We specialize in commercial buildings, IT offices, industrial facilities, warehouses, and large-scale infrastructure projects. Our expertise spans from 50,000 sq ft to 5+ lakh sq ft developments with budgets ranging from ₹50 crores to ₹500+ crores.'
+      category: 'General',
+      question: 'What types of spaces are available with Pesh Group?',
+      answer: 'We offer ready-to-move, warm shell, and fully furnished plug-n-play offices, IT/ITES spaces, showrooms, and industrial units.'
     },
     {
-      category: 'Projects & Services',
-      question: 'Do you provide design and engineering services?',
-      answer: 'Yes, we offer comprehensive design-build services including architectural planning, structural engineering, MEP design, and interior fit-outs. Our in-house team ensures seamless coordination from concept to completion.'
+      category: 'General',
+      question: 'Where are your projects located?',
+      answer: 'Our key developments are in Pune\'s prime business hubs — Hinjewadi, Talawade, Pimpri-Chinchwad, and other MIDC zones.'
     },
     {
-      category: 'Timeline & Process',
-      question: 'How long does a typical commercial project take?',
-      answer: 'Project timelines vary based on size and complexity. Typically, a 1-2 lakh sq ft commercial building takes 18-24 months, while larger IT campuses (3-5 lakh sq ft) require 24-36 months. We provide detailed project schedules during planning.'
+      category: 'General',
+      question: 'Are your offices ready to move in?',
+      answer: 'Yes, many of our spaces are fully furnished and move-in ready to help companies start operations immediately.'
     },
     {
-      category: 'Timeline & Process',
-      question: 'What is your construction process?',
-      answer: 'Our process includes: 1) Site analysis & feasibility study, 2) Design development & approvals, 3) Detailed engineering & planning, 4) Construction execution with quality monitoring, 5) Testing & commissioning, 6) Handover with warranty support.'
+      category: 'General',
+      question: 'Can tenants expand or customize their space later?',
+      answer: 'Absolutely — we offer flexible leasing options and assist clients who wish to expand or reconfigure their office layouts.'
     },
     {
-      category: 'Pricing & Payments',
-      question: 'How do you structure project pricing?',
-      answer: 'We offer transparent pricing with detailed cost breakdowns. Payment is typically structured as: 10% advance, 80% based on construction milestones, and 10% upon completion. We provide comprehensive BOQ (Bill of Quantities) for full transparency.'
-    },
-    {
-      category: 'Pricing & Payments',
-      question: 'Do you provide cost estimates before starting?',
-      answer: 'Yes, we provide detailed cost estimates after site survey and requirement analysis. Our estimates include materials, labor, equipment, overheads, and contingencies with ±5% accuracy for informed decision-making.'
-    },
-    {
-      category: 'Quality & Safety',
-      question: 'What quality standards do you follow?',
-      answer: 'We adhere to IS codes, NBC guidelines, and international standards like LEED for green buildings. All our projects undergo regular quality audits, third-party inspections, and we maintain detailed quality documentation throughout construction.'
-    },
-    {
-      category: 'Quality & Safety',
-      question: 'How do you ensure construction safety?',
-      answer: 'Safety is our top priority. We implement comprehensive safety protocols including regular training, PPE enforcement, safety audits, emergency procedures, and compliance with all statutory safety requirements. Our safety record speaks for itself with zero major incidents.'
-    },
-    {
-      category: 'Projects & Services',
-      question: 'Do you handle government and private projects?',
-      answer: 'Yes, we work with both sectors. We have experience with government tenders, PSU projects, and private corporate developments. Our team understands the unique requirements and compliance needs of each sector.'
-    },
-    {
-      category: 'Timeline & Process',
-      question: 'How do you handle project delays and changes?',
-      answer: 'We maintain buffer time in schedules and have contingency plans. For scope changes, we follow a formal change management process with impact assessment. Our project management approach minimizes delays through proactive planning and risk management.'
+      category: 'General',
+      question: 'How can I enquire or schedule a site visit?',
+      answer: 'You can fill out the enquiry form on our website or contact us directly at contact@peshgroup.com or through our phone number.'
     }
   ];
 
@@ -130,7 +87,7 @@ const FAQSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-gray-600 max-w-3xl mx-auto"
           >
-            Get answers to common questions about our construction services, processes, and expertise.
+            Get answers to common questions about our spaces, locations, and leasing options.
           </motion.p>
         </div>
 

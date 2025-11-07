@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
-import Image from 'next/image';
 
 const testimonials = [
   {
@@ -11,7 +10,7 @@ const testimonials = [
     position: 'Hashmap India Pvt Ltd.',
     company: '',
     rating: 5,
-    text: 'Midas Team is doing a fantastic job. Very responsive and supportive. I appreciate the team for their efforts to keep the building clean and safe.',
+    text: 'Midas Team is doing a fantastic job I appreciate the team for their efforts to keep the building clean and safe.',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
   },
   {
@@ -87,19 +86,10 @@ export default function Testimonials() {
                     ))}
                   </div>
                   <p className="text-gray-700 mb-6 leading-relaxed">&ldquo;{testimonial.text}&rdquo;</p>
-                  <div className="flex items-center">
-                    <Image
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      width={48}
-                      height={48}
-                      className="w-12 h-12 rounded-full object-cover mr-4"
-                    />
-                    <div>
-                      <h4 className="font-medium text-gray-900">{testimonial.name}</h4>
-                      <p className="text-sm text-gray-600">{testimonial.position}</p>
-                      <p className="text-xs text-gray-500">{testimonial.company}</p>
-                    </div>
+                  <div>
+                    <h4 className="font-medium text-gray-900">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-600">{testimonial.position}</p>
+                    <p className="text-xs text-gray-500">{testimonial.company}</p>
                   </div>
                 </motion.div>
               ))}

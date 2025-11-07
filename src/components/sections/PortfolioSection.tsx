@@ -2,8 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect, useCallback } from 'react';
-import { ArrowRight, Calendar, MapPin, Building, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Calendar, MapPin, Building, X, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Project {
   id: number;
@@ -18,6 +19,7 @@ interface Project {
   details: string;
   features: string[];
   budget: string;
+  slug?: string;
 }
 
 const PortfolioSection = () => {
@@ -111,6 +113,7 @@ const PortfolioSection = () => {
   const projects: Project[] = [
     {
       id: 1,
+      slug: 'midas-tower',
       title: 'Midas Tower',
       category: 'it-offices',
       image: '/midas0.jpeg',
@@ -139,6 +142,7 @@ const PortfolioSection = () => {
     },
     {
       id: 2,
+      slug: 'midas-infinite',
       title: 'Midas Infinite',
       category: 'it-offices',
       image: '/portfolio/MI/MI01.jpeg',
@@ -166,6 +170,7 @@ const PortfolioSection = () => {
     },
     {
       id: 3,
+      slug: 'midas-sez',
       title: 'Midas SEZ',
       category: 'commercial',
       image: '/portfolio/MS/MS01.jpeg',
@@ -194,6 +199,7 @@ const PortfolioSection = () => {
     },
     {
       id: 4,
+      slug: 'ish-infotech',
       title: 'Ish Infotech',
       category: 'it-offices',
       image: '/portfolio/II/II01.jpg',
@@ -222,6 +228,7 @@ const PortfolioSection = () => {
     },
     {
       id: 5,
+      slug: 'pesh-technology-park',
       title: 'Pesh Technology Park',
       category: 'it-offices',
       image: '/portfolio/PTP/PTP01.JPG',
@@ -250,6 +257,7 @@ const PortfolioSection = () => {
     },
     {
       id: 6,
+      slug: 'raj-motors',
       title: 'Raj Motors',
       category: 'industrial',
       image: '/portfolio/RJM/RJM01.png',
@@ -612,15 +620,27 @@ const PortfolioSection = () => {
                   </div>
                 </div>
 
-                <motion.button
-                  onClick={() => openProject(project)}
-                  className="flex items-center text-black font-medium hover:text-gray-600 transition-colors duration-300"
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  View Details
-                  <ArrowRight size={16} className="ml-2" />
-                </motion.button>
+                <div className="flex items-center gap-4">
+                  <motion.button
+                    onClick={() => openProject(project)}
+                    className="flex items-center text-gray-600 font-medium hover:text-gray-900 transition-colors duration-300"
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    Quick View
+                    <ArrowRight size={16} className="ml-2" />
+                  </motion.button>
+                  
+                  {project.slug && (
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      className="flex items-center text-black font-medium hover:text-gray-600 transition-colors duration-300"
+                    >
+                      Full Details
+                      <ExternalLink size={16} className="ml-2" />
+                    </Link>
+                  )}
+                </div>
               </div>
             </motion.div>
           ))}

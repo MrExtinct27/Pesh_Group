@@ -89,29 +89,29 @@ const AnimatedCounter = ({ number, text, icon: IconComponent, index }: {
 
 const AboutSection = () => {
   const achievements = [
-    { icon: Users, number: '100+', text: 'Expert Team Members' },
-    { icon: Award, number: '250000', text: 'Developed Area' },
-    { icon: Award, number: '20000', text: 'Under Developed Area' },
-    { icon: Target, number: '100+', text: 'Satisfied Clients ' }
+    { icon: Users, number: '65+', text: 'Expert Team Members' },
+    { icon: Award, number: '2500000', text: 'Developed Area' },
+    { icon: Award, number: '150000', text: 'Under Developed Area' },
+    { icon: Target, number: '200+', text: 'Satisfied Clients ' }
   ];
 
   const leadership = [
     {
       name: 'Sunil Peswani',
       role: 'CEO',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+      image: '/sunilpeswani.jpg',
       description: 'Visionary leader with 25+ years of experience in commercial construction and development.'
     },
     {
       name: 'Ram Peswani',
       role: 'Founder',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b0395111?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+      image: '/rampeswani.jpg',
       description: 'Founder whose vision in 1978 turned dreams into enduring landmarks.'
     },
     {
       name: 'Rashmi Peswani',
       role: 'CMO',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+      image: '/rashmipeswani.jpg',
       description: 'Expert in large-scale commercial and industrial project management.'
     }
   ];
