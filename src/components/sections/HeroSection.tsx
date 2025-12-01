@@ -2,8 +2,27 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight, Building2, Users, Award } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const HeroSection = () => {
+  const slides = [
+    { image: '/midas0.jpeg', title: 'Midas Tower' },
+    { image: '/portfolio/MI/MI01.jpeg', title: 'Midas Infinite' },
+    { image: '/portfolio/MS/MS01.jpeg', title: 'Midas SEZ' },
+    { image: '/portfolio/II/II01.jpg', title: 'Ish Infotech' },
+    { image: '/portfolio/PTP/PTP01.JPG', title: 'Pesh Technology Park' },
+    { image: '/portfolio/RJM/RJM01.png', title: 'Raj Motors' }
+  ];
+  
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % slides.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
   const handleDiscoverMore = () => {
     const servicesSection = document.querySelector('#services');
     if (servicesSection) {
@@ -20,14 +39,28 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center bg-gray-50">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/midas0.jpeg')"
-        }}
-      >
+      {/* Background Slideshow */}
+      <div className="absolute inset-0">
+        {slides.map((slide, idx) => (
+          <div
+            key={idx}
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000"
+            style={{
+              backgroundImage: `url('${slide.image}')`,
+              opacity: currentImage === idx ? 1 : 0
+            }}
+          />
+        ))}
         <div className="absolute inset-0 bg-black/60" />
+        <motion.div 
+          className="absolute top-6 right-6 text-white text-sm sm:text-base md:text-lg font-light tracking-wide"
+          key={currentImage}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {slides[currentImage].title}
+        </motion.div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -93,6 +126,15 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
           We plan with foresight, execute with precision, and create world-class office spaces designed for success today and built to inspire legacies tomorrow.
+          </motion.p>
+
+          <motion.p 
+            className="text-lg sm:text-xl md:text-2xl text-white mb-8 font-medium"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            Premium Commercial &amp; IT Offices Spaces in Pune
           </motion.p>
 
           <motion.div 

@@ -166,7 +166,7 @@ const AboutSection = () => {
               </p>
               <p>
                 Our commitment to quality, innovation, and sustainable practices has earned us 
-                the trust of leading corporations and developers across the country. We don't just 
+                the trust of leading corporations and developers across the country. We don\'t just 
                 build structures; we create environments where businesses thrive and communities flourish.
               </p>
             </div>
@@ -188,6 +188,106 @@ const AboutSection = () => {
             <div className="absolute inset-0 bg-black/20"></div>
           </motion.div>
         </div>
+
+        {/* Who We Are Subsection */}
+        <motion.div
+          className="mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h3 className="text-3xl font-light text-gray-900 mb-4">Who We Are</h3>
+          <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-8">Building Landmark Commercial Projects Since 1978</h2>
+          <div className="space-y-6 text-gray-600 leading-relaxed mb-12">
+            <p>
+              Founded in 1978, Pesh Group has evolved into a multi-vertical real estate and construction company known for quality, transparency, and on-time delivery. Our portfolio includes IT office towers, corporate campuses, retail showrooms, industrial units, and turnkey infrastructure across Pune\'s major business hubs.
+            </p>
+            <p>
+              We combine strategic locations, modern engineering, and customer-centric planning to deliver high-performance work environments for enterprises, startups, and multinational companies.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <motion.div
+              className="bg-gray-50 p-6 hover:bg-white hover:shadow-lg transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              whileHover={{ y: -5 }}
+            >
+              <h4 className="text-xl font-medium text-gray-900 mb-3">Our Vision</h4>
+              <p className="text-gray-600 leading-relaxed">
+                To create future-ready commercial spaces that support business growth, innovation, and productivity.
+              </p>
+            </motion.div>
+            <motion.div
+              className="bg-gray-50 p-6 hover:bg-white hover:shadow-lg transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ y: -5 }}
+            >
+              <h4 className="text-xl font-medium text-gray-900 mb-3">Our Mission</h4>
+              <p className="text-gray-600 leading-relaxed">
+                To deliver high-quality commercial developments using advanced engineering, transparent processes, and customer-focused planning.
+              </p>
+            </motion.div>
+            <motion.div
+              className="bg-gray-50 p-6 hover:bg-white hover:shadow-lg transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              whileHover={{ y: -5 }}
+            >
+              <h4 className="text-xl font-medium text-gray-900 mb-3">Our Values</h4>
+              <ul className="text-gray-600 leading-relaxed space-y-2">
+                <li>• Integrity</li>
+                <li>• Quality</li>
+                <li>• Transparency</li>
+                <li>• Innovation</li>
+                <li>• Commitment to delivery</li>
+              </ul>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Why Choose Pesh Group Subsection */}
+        <motion.div
+          className="mb-20 bg-gray-50 p-8 md:p-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h3 className="text-3xl font-light text-gray-900 mb-4">Why Choose Pesh Group</h3>
+          <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-8">Strategic Locations. Quality Construction. Business-Ready Properties.</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              '45+ years of real estate expertise',
+              'Projects in Hinjewadi, PCMC, Talawade & Pune',
+              'High-quality construction & modern infrastructure',
+              'Flexible leasing & built-to-suit options',
+              'Strong facility management & post-handover support',
+              'Trusted by corporates, SMEs & global companies'
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="flex items-start"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <div className="w-2 h-2 bg-gray-900 rounded-full mr-4 mt-2"></div>
+                <p className="text-gray-700 text-lg">{item}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Achievements */}
         <motion.div 
