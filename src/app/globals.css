@@ -27,6 +27,8 @@ body {
   font-family: var(--font-sans);
   font-weight: 300;
   line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
 }
 
 /* Smooth scrolling */
@@ -187,5 +189,25 @@ input:focus, textarea:focus, select:focus {
 @media print {
   .no-print {
     display: none !important;
+  }
+}
+
+/* Ensure fixed elements are always visible */
+html, body {
+  overflow-x: hidden;
+}
+
+main {
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Mobile specific fixes */
+@media (max-width: 768px) {
+  /* Ensure WhatsApp button is visible on mobile */
+  a[href*="wa.link"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }

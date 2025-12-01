@@ -37,13 +37,13 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block text-sm font-medium text-gray-200 mb-6 uppercase tracking-widest">
+            <span className="inline-block text-xs sm:text-sm font-medium text-gray-200 mb-4 sm:mb-6 uppercase tracking-widest">
               Premium Construction Excellence
             </span>
           </motion.div>
 
 <motion.h1
-  className="text-4xl md:text-6xl font-light text-white mb-8 leading-tight text-left"
+  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6 sm:mb-8 leading-tight text-left"
   initial={{ opacity: 0, y: 30 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.8, delay: 0.2 }}
@@ -87,7 +87,7 @@ const HeroSection = () => {
 
 
           <motion.p 
-            className="text-xl text-gray-200 mb-12 leading-relaxed max-w-2xl"
+            className="text-base sm:text-lg md:text-xl text-gray-200 mb-8 sm:mb-12 leading-relaxed max-w-2xl"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -96,24 +96,24 @@ const HeroSection = () => {
           </motion.p>
 
           <motion.div 
-            className="flex flex-col sm:flex-row gap-6"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <motion.button 
               onClick={handleDiscoverMore}
-              className="bg-white text-black px-8 py-4 cursor-pointer font-medium hover:bg-gray-100 transition-colors duration-300 flex items-center"
+              className="bg-white text-black px-6 sm:px-8 py-3 sm:py-4 cursor-pointer font-medium hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center text-sm sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Discover More
-              <ArrowRight className="ml-2" size={20} />
+              <ArrowRight className="ml-2" size={18} />
             </motion.button>
             
             <motion.button 
               onClick={handleViewPortfolio}
-              className="border border-white text-white cursor-pointer px-8 py-4 font-medium hover:bg-white hover:text-black transition-all duration-300"
+              className="border border-white text-white cursor-pointer px-6 sm:px-8 py-3 sm:py-4 font-medium hover:bg-white hover:text-black transition-all duration-300 text-sm sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -125,33 +125,33 @@ const HeroSection = () => {
 
       {/* Bottom Statistics */}
       <motion.div 
-        className="absolute bottom-20 left-0 right-0"
+        className="absolute bottom-10 sm:bottom-20 left-0 right-0"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8 }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 gap-8 text-white">
+          <div className="grid grid-cols-3 gap-4 sm:gap-8 text-white">
             <div className="text-center">
-              <div className="flex items-center justify-center mb-3">
-                <Building2 size={24} className="text-gray-300" />
+              <div className="flex items-center justify-center mb-2 sm:mb-3">
+                <Building2 size={18} className="sm:w-6 sm:h-6 text-gray-300" />
               </div>
-              <div className="text-3xl font-light mb-2">30+</div>
-              <div className="text-sm text-gray-300 uppercase tracking-wider">Projects Completed</div>
+              <div className="text-xl sm:text-2xl md:text-3xl font-light mb-1 sm:mb-2">30+</div>
+              <div className="text-[10px] sm:text-xs md:text-sm text-gray-300 uppercase tracking-wider">Projects Completed</div>
             </div>
             <div className="text-center">
-              <div className="flex items-center justify-center mb-3">
-                <Users size={24} className="text-gray-300" />
+              <div className="flex items-center justify-center mb-2 sm:mb-3">
+                <Users size={18} className="sm:w-6 sm:h-6 text-gray-300" />
               </div>
-              <div className="text-3xl font-light mb-2">45+</div>
-              <div className="text-sm text-gray-300 uppercase tracking-wider">Years Experience</div>
+              <div className="text-xl sm:text-2xl md:text-3xl font-light mb-1 sm:mb-2">45+</div>
+              <div className="text-[10px] sm:text-xs md:text-sm text-gray-300 uppercase tracking-wider">Years Experience</div>
             </div>
             <div className="text-center">
-              <div className="flex items-center justify-center mb-3">
-                <Award size={24} className="text-gray-300" />
+              <div className="flex items-center justify-center mb-2 sm:mb-3">
+                <Award size={18} className="sm:w-6 sm:h-6 text-gray-300" />
               </div>
-              <div className="text-3xl font-light mb-2">100%</div>
-              <div className="text-sm text-gray-300 uppercase tracking-wider">Client Satisfaction</div>
+              <div className="text-xl sm:text-2xl md:text-3xl font-light mb-1 sm:mb-2">100%</div>
+              <div className="text-[10px] sm:text-xs md:text-sm text-gray-300 uppercase tracking-wider">Client Satisfaction</div>
             </div>
           </div>
         </div>

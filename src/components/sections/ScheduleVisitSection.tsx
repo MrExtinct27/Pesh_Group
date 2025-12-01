@@ -42,15 +42,21 @@ const ScheduleVisitSection = () => {
     setSubmitStatus('idle');
 
     try {
-      const response = await fetch('/api/schedule-visit', {
+      // Create FormData object for getform.io
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', data.name);
+      formDataToSend.append('email', data.email);
+      formDataToSend.append('phone', data.phone);
+      formDataToSend.append('projectType', data.projectType);
+      formDataToSend.append('projectLocation', data.projectLocation || '');
+      formDataToSend.append('preferredDate', data.preferredDate);
+      formDataToSend.append('preferredTime', data.preferredTime);
+      formDataToSend.append('message', data.message || '');
+      formDataToSend.append('formType', 'Site Visit Schedule');
+
+      const response = await fetch('https://getform.io/f/bpjzddyb', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...data,
-          type: 'schedule_visit'
-        }),
+        body: formDataToSend,
       });
 
       if (response.ok) {
@@ -213,6 +219,9 @@ const ScheduleVisitSection = () => {
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Schedule Your Visit</h3>
                 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                  {/* Honeypot field to prevent spam */}
+                  <input type="hidden" name="_gotcha" style={{ display: 'none' }} />
+                  
                   {/* Personal Information */}
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>

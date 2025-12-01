@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, Phone, MapPin, Clock, Bold } from 'lucide-react';
 import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -53,28 +54,35 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const handleLogoClick = () => {
-    window.location.reload();
-  };
 
   return (
     <>
       {/* Top Bar */}
       <div className="bg-black text-white py-2 px-4">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm">
-          <div className="flex items-center space-x-6">
+        <div className="max-w-7xl mx-auto">
+          {/* Mobile View */}
+          <div className="md:hidden flex flex-col items-center space-y-1 text-xs">
             <div className="flex items-center space-x-2">
-              <Phone size={14} />
-              <span>+91 9225655601 / 9225655607 </span>
+              <Phone size={12} />
+              <span>+91 9225655601 / 9225655607</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <MapPin size={14} />
-              <span>PCMC, Pune</span>
-            </div>
-           
           </div>
-          <div className="text-gray-100">
-            Premium Construction Excellence Since <span className="font-bold">1978</span>
+          
+          {/* Desktop View */}
+          <div className="hidden md:flex flex-row justify-between items-center text-sm">
+            <div className="flex items-center space-x-6">
+              <div className="flex items-center space-x-2">
+                <Phone size={14} />
+                <span>+91 9225655601 / 9225655607 </span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <MapPin size={14} />
+                <span>PCMC, Pune</span>
+              </div>
+            </div>
+            <div className="text-gray-100">
+              Premium Construction Excellence Since <span className="font-bold">1978</span>
+            </div>
           </div>
         </div>
       </div>
@@ -95,32 +103,33 @@ const Header = () => {
             
             {/* Logo */}
 
-<motion.button 
-  onClick={handleLogoClick}
-  className="flex items-center space-x-3 cursor-pointer"
-  whileHover={{ scale: 1.02 }}
-  transition={{ duration: 0.2 }}
->
-  {/* Logo */}
-  <div className="w-16 h-16 flex items-center justify-center">
-    <Image 
-      src="/logos/pesh_logo.png"  
-      alt="Pesh Group Logo"
-      width={64}
-      height={64}
-      className="object-contain"
-    />
-  </div>
+<Link href="/" className="flex items-center space-x-2 sm:space-x-3 cursor-pointer">
+  <motion.div
+    className="flex items-center space-x-2 sm:space-x-3"
+    whileHover={{ scale: 1.02 }}
+    transition={{ duration: 0.2 }}
+  >
+    {/* Logo */}
+    <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">
+      <Image 
+        src="/logos/pesh_logo.png"  
+        alt="Pesh Group Logo"
+        width={64}
+        height={64}
+        className="object-contain"
+      />
+    </div>
 
-  <div>
-    <h1 className={`text-2xl font-light ${isScrolled ? 'text-black' : 'text-black'}`}>
-      Pesh Group
-    </h1>
-    <p className={`text-xs ${isScrolled ? 'text-gray-600' : 'text-gray-600'} font-medium`}>
-      Creating Landmarks
-    </p>
-  </div>
-</motion.button>
+    <div>
+      <h1 className={`text-lg sm:text-2xl font-light ${isScrolled ? 'text-black' : 'text-black'}`}>
+        Pesh Group
+      </h1>
+      <p className={`text-[10px] sm:text-xs ${isScrolled ? 'text-gray-600' : 'text-gray-600'} font-medium`}>
+        Creating Landmarks
+      </p>
+    </div>
+  </motion.div>
+</Link>
 
 
 

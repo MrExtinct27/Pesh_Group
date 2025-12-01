@@ -74,16 +74,19 @@ const ConsultationSection = () => {
     setErrors({});
 
     try {
-      // Send form data to API
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      // Create FormData object for getform.io
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('projectType', formData.projectType);
+      formDataToSend.append('message', formData.message);
+      formDataToSend.append('formType', 'Consultation Request');
 
-      const result = await response.json();
+      const response = await fetch('https://getform.io/f/bpjzddyb', {
+        method: 'POST',
+        body: formDataToSend,
+      });
 
       if (response.ok) {
         setSubmitStatus('success');
@@ -97,7 +100,7 @@ const ConsultationSection = () => {
         
         setTimeout(() => setSubmitStatus('idle'), 5000);
       } else {
-        throw new Error(result.error || 'Failed to submit form');
+        throw new Error('Failed to submit form');
       }
     } catch (error) {
       console.error('Form submission error:', error);
@@ -147,6 +150,9 @@ const ConsultationSection = () => {
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot field to prevent spam */}
+                <input type="hidden" name="_gotcha" style={{ display: 'none' }} />
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">

@@ -70,21 +70,23 @@ export default function ProjectScheduleVisitModal({
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/project-schedule-visit', {
+      // Create FormData object for getform.io
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('companyName', formData.companyName);
+      formDataToSend.append('mobileNumber', formData.mobileNumber);
+      formDataToSend.append('requirement', formData.requirement);
+      formDataToSend.append('projectTitle', projectTitle);
+      formDataToSend.append('projectSlug', projectSlug);
+      formDataToSend.append('formType', 'Schedule Visit');
+
+      const response = await fetch('https://getform.io/f/bpjzddyb', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          projectTitle,
-          projectSlug
-        }),
+        body: formDataToSend,
       });
 
-      const data = await response.json();
-
-      if (response.ok && data.success) {
+      if (response.ok) {
         setIsSubmitted(true);
         // Reset form after 3 seconds and close modal
         setTimeout(() => {
@@ -99,7 +101,7 @@ export default function ProjectScheduleVisitModal({
           onClose();
         }, 3000);
       } else {
-        setError(data.error || 'Something went wrong. Please try again.');
+        setError('Something went wrong. Please try again.');
       }
     } catch (err) {
       setError('Failed to submit. Please try again or contact us directly.');
@@ -212,6 +214,9 @@ export default function ProjectScheduleVisitModal({
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                    {/* Honeypot field to prevent spam */}
+                    <input type="hidden" name="_gotcha" style={{ display: 'none' }} />
+                    
                     {/* Name */}
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
