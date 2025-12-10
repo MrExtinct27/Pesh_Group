@@ -113,6 +113,12 @@ const AboutSection = () => {
       role: 'CMO',
       image: '/rashmipeswani.jpg',
       description: 'Expert in large-scale commercial and industrial project management.'
+    },
+    {
+      name: 'Ish Peswani',
+      role: 'Director',
+      image: '/ishpeswani.jpg',
+      description: 'Strategic director specializing in business development and client relations, driving growth through innovative partnerships and market expansion.'
     }
   ];
 
@@ -324,7 +330,7 @@ const AboutSection = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {leadership.map((member, index) => (
               <motion.div 
                 key={member.name}
